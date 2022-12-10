@@ -1,3 +1,6 @@
+DROP SCHEMA IF EXISTS "public" CASCADE;
+CREATE SCHEMA "public";
+
 CREATE TABLE "public"."users" (
     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
     "email" "text" NOT NULL,
