@@ -1,658 +1,658 @@
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'2c5f2bc6-187b-4239-a0f7-92dd2efe11d7',
-	'2c5f2bc6-187b-4239-a0f7-92dd2efe11d7@gmail.com',
+	'cf26434a-03bd-4492-8153-4233bc20e3d4',
+	'cf26434a-03bd-4492-8153-4233bc20e3d4@gmail.com',
 	'JOINED',
-	'2C5F2BC6-187B-4239-A0F7-92DD2EFE11D7',
-	'fcm_2c5f2bc6-187b-4239-a0f7-92dd2efe11d7',
+	'CF26434A-03BD-4492-8153-4233BC20E3D4',
+	'fcm_cf26434a-03bd-4492-8153-4233bc20e3d4',
 	-20,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'd575d55a-7e65-4493-a290-129b15456a15',
-	'd575d55a-7e65-4493-a290-129b15456a15@gmail.com',
+	'35487a59-2714-4a93-9e8a-5fe748e32344',
+	'35487a59-2714-4a93-9e8a-5fe748e32344@gmail.com',
 	'JOINED',
-	'D575D55A-7E65-4493-A290-129B15456A15',
-	'fcm_d575d55a-7e65-4493-a290-129b15456a15',
+	'35487A59-2714-4A93-9E8A-5FE748E32344',
+	'fcm_35487a59-2714-4a93-9e8a-5fe748e32344',
 	-15,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'1c566599-69ed-41dd-923c-7a75aa69ac12',
-	'1c566599-69ed-41dd-923c-7a75aa69ac12@gmail.com',
+	'698fa61e-e133-4b44-8479-bac76c0b8f17',
+	'698fa61e-e133-4b44-8479-bac76c0b8f17@gmail.com',
 	'JOINED',
-	'1C566599-69ED-41DD-923C-7A75AA69AC12',
-	'fcm_1c566599-69ed-41dd-923c-7a75aa69ac12',
+	'698FA61E-E133-4B44-8479-BAC76C0B8F17',
+	'fcm_698fa61e-e133-4b44-8479-bac76c0b8f17',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'3e3ff0ac-4ad9-439e-92a0-6db51091c3b5',
-	'3e3ff0ac-4ad9-439e-92a0-6db51091c3b5@gmail.com',
+	'4517900e-1c3c-4528-a5fd-7ec467cf89c4',
+	'4517900e-1c3c-4528-a5fd-7ec467cf89c4@gmail.com',
 	'JOINED',
-	'3E3FF0AC-4AD9-439E-92A0-6DB51091C3B5',
-	'fcm_3e3ff0ac-4ad9-439e-92a0-6db51091c3b5',
+	'4517900E-1C3C-4528-A5FD-7EC467CF89C4',
+	'fcm_4517900e-1c3c-4528-a5fd-7ec467cf89c4',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'fc4ceb84-2cba-4364-8d10-70c7f69c3d31',
-	'fc4ceb84-2cba-4364-8d10-70c7f69c3d31@gmail.com',
+	'e3b5a409-91d1-4112-8f00-eba1335a6bb3',
+	'e3b5a409-91d1-4112-8f00-eba1335a6bb3@gmail.com',
 	'JOINED',
-	'FC4CEB84-2CBA-4364-8D10-70C7F69C3D31',
-	'fcm_fc4ceb84-2cba-4364-8d10-70c7f69c3d31',
+	'E3B5A409-91D1-4112-8F00-EBA1335A6BB3',
+	'fcm_e3b5a409-91d1-4112-8f00-eba1335a6bb3',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'80ba4c31-863a-4f22-9b64-4f2aa8fd2e3f',
-	'80ba4c31-863a-4f22-9b64-4f2aa8fd2e3f@gmail.com',
+	'205c5203-00f8-4cde-bed6-87f4000a6f05',
+	'205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com',
 	'JOINED',
-	'80BA4C31-863A-4F22-9B64-4F2AA8FD2E3F',
-	'fcm_80ba4c31-863a-4f22-9b64-4f2aa8fd2e3f',
+	'205C5203-00F8-4CDE-BED6-87F4000A6F05',
+	'fcm_205c5203-00f8-4cde-bed6-87f4000a6f05',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'15096742-98a1-4436-9877-0961fad64f8c',
-	'15096742-98a1-4436-9877-0961fad64f8c@gmail.com',
+	'db53a306-324a-432e-b95b-b3efbc8fdfd7',
+	'db53a306-324a-432e-b95b-b3efbc8fdfd7@gmail.com',
 	'JOINED',
-	'15096742-98A1-4436-9877-0961FAD64F8C',
-	'fcm_15096742-98a1-4436-9877-0961fad64f8c',
+	'DB53A306-324A-432E-B95B-B3EFBC8FDFD7',
+	'fcm_db53a306-324a-432e-b95b-b3efbc8fdfd7',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'922f6eb2-44a5-4d03-a1d9-06e8de8ed8b4',
-	'922f6eb2-44a5-4d03-a1d9-06e8de8ed8b4@gmail.com',
+	'dc225eea-0b69-4b35-ad27-73b356fe9cd8',
+	'dc225eea-0b69-4b35-ad27-73b356fe9cd8@gmail.com',
 	'JOINED',
-	'922F6EB2-44A5-4D03-A1D9-06E8DE8ED8B4',
-	'fcm_922f6eb2-44a5-4d03-a1d9-06e8de8ed8b4',
+	'DC225EEA-0B69-4B35-AD27-73B356FE9CD8',
+	'fcm_dc225eea-0b69-4b35-ad27-73b356fe9cd8',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'97e45eb3-7017-4a75-b692-05715c404d66',
-	'97e45eb3-7017-4a75-b692-05715c404d66@gmail.com',
+	'd0782554-1fec-491a-8d0a-1ca01d50e7d8',
+	'd0782554-1fec-491a-8d0a-1ca01d50e7d8@gmail.com',
 	'JOINED',
-	'97E45EB3-7017-4A75-B692-05715C404D66',
-	'fcm_97e45eb3-7017-4a75-b692-05715c404d66',
+	'D0782554-1FEC-491A-8D0A-1CA01D50E7D8',
+	'fcm_d0782554-1fec-491a-8d0a-1ca01d50e7d8',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'da5bd661-917f-4e98-850d-328c30ae3733',
-	'da5bd661-917f-4e98-850d-328c30ae3733@gmail.com',
+	'71d0195a-da10-44e5-aac4-b822a2965939',
+	'71d0195a-da10-44e5-aac4-b822a2965939@gmail.com',
 	'JOINED',
-	'DA5BD661-917F-4E98-850D-328C30AE3733',
-	'fcm_da5bd661-917f-4e98-850d-328c30ae3733',
+	'71D0195A-DA10-44E5-AAC4-B822A2965939',
+	'fcm_71d0195a-da10-44e5-aac4-b822a2965939',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'1fb0dbd9-1054-4dbd-a530-55b55eeaeef3',
-	'1fb0dbd9-1054-4dbd-a530-55b55eeaeef3@gmail.com',
+	'5f6dbeb7-daa1-4f39-8190-b0b53bf411b1',
+	'5f6dbeb7-daa1-4f39-8190-b0b53bf411b1@gmail.com',
 	'JOINED',
-	'1FB0DBD9-1054-4DBD-A530-55B55EEAEEF3',
-	'fcm_1fb0dbd9-1054-4dbd-a530-55b55eeaeef3',
+	'5F6DBEB7-DAA1-4F39-8190-B0B53BF411B1',
+	'fcm_5f6dbeb7-daa1-4f39-8190-b0b53bf411b1',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'de151f73-94a2-4f2d-b3b2-ea6ba213646c',
-	'de151f73-94a2-4f2d-b3b2-ea6ba213646c@gmail.com',
+	'459241df-e48d-46fa-b5a5-a07998956506',
+	'459241df-e48d-46fa-b5a5-a07998956506@gmail.com',
 	'JOINED',
-	'DE151F73-94A2-4F2D-B3B2-EA6BA213646C',
-	'fcm_de151f73-94a2-4f2d-b3b2-ea6ba213646c',
+	'459241DF-E48D-46FA-B5A5-A07998956506',
+	'fcm_459241df-e48d-46fa-b5a5-a07998956506',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'07fbe39d-ca22-4687-930d-11bb1df1c68f',
-	'07fbe39d-ca22-4687-930d-11bb1df1c68f@gmail.com',
+	'88a4043d-29fd-4310-aa13-70a22c2c40b2',
+	'88a4043d-29fd-4310-aa13-70a22c2c40b2@gmail.com',
 	'JOINED',
-	'07FBE39D-CA22-4687-930D-11BB1DF1C68F',
-	'fcm_07fbe39d-ca22-4687-930d-11bb1df1c68f',
+	'88A4043D-29FD-4310-AA13-70A22C2C40B2',
+	'fcm_88a4043d-29fd-4310-aa13-70a22c2c40b2',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'4ebe62ee-5d62-4e46-9f38-c1e477599e0e',
-	'4ebe62ee-5d62-4e46-9f38-c1e477599e0e@gmail.com',
+	'083a55bc-c8be-4179-af41-0c9b4b55a0c1',
+	'083a55bc-c8be-4179-af41-0c9b4b55a0c1@gmail.com',
 	'JOINED',
-	'4EBE62EE-5D62-4E46-9F38-C1E477599E0E',
-	'fcm_4ebe62ee-5d62-4e46-9f38-c1e477599e0e',
+	'083A55BC-C8BE-4179-AF41-0C9B4B55A0C1',
+	'fcm_083a55bc-c8be-4179-af41-0c9b4b55a0c1',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'611c9e67-2f62-48fc-b37a-dbd0884fbe4c',
-	'611c9e67-2f62-48fc-b37a-dbd0884fbe4c@gmail.com',
+	'3d45b074-ad39-4f8d-87e1-e220725ce19c',
+	'3d45b074-ad39-4f8d-87e1-e220725ce19c@gmail.com',
 	'JOINED',
-	'611C9E67-2F62-48FC-B37A-DBD0884FBE4C',
-	'fcm_611c9e67-2f62-48fc-b37a-dbd0884fbe4c',
+	'3D45B074-AD39-4F8D-87E1-E220725CE19C',
+	'fcm_3d45b074-ad39-4f8d-87e1-e220725ce19c',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'1c6c967c-c793-4fe6-b9ae-1ac65d9c2ac9',
-	'1c6c967c-c793-4fe6-b9ae-1ac65d9c2ac9@gmail.com',
+	'c436d5cb-c73e-4dbf-b0ed-448d0f491343',
+	'c436d5cb-c73e-4dbf-b0ed-448d0f491343@gmail.com',
 	'JOINED',
-	'1C6C967C-C793-4FE6-B9AE-1AC65D9C2AC9',
-	'fcm_1c6c967c-c793-4fe6-b9ae-1ac65d9c2ac9',
+	'C436D5CB-C73E-4DBF-B0ED-448D0F491343',
+	'fcm_c436d5cb-c73e-4dbf-b0ed-448d0f491343',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'9f4b6435-346d-4aef-bf68-21065ff4a889',
-	'9f4b6435-346d-4aef-bf68-21065ff4a889@gmail.com',
+	'66a3e703-6144-4ed0-9b7f-50422d841f9e',
+	'66a3e703-6144-4ed0-9b7f-50422d841f9e@gmail.com',
 	'JOINED',
-	'9F4B6435-346D-4AEF-BF68-21065FF4A889',
-	'fcm_9f4b6435-346d-4aef-bf68-21065ff4a889',
+	'66A3E703-6144-4ED0-9B7F-50422D841F9E',
+	'fcm_66a3e703-6144-4ed0-9b7f-50422d841f9e',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'4a851f8a-849f-488b-82f8-2fb44a8f8026',
-	'4a851f8a-849f-488b-82f8-2fb44a8f8026@gmail.com',
+	'33d9d49e-7786-4609-acfb-1c465ef6e2d6',
+	'33d9d49e-7786-4609-acfb-1c465ef6e2d6@gmail.com',
 	'JOINED',
-	'4A851F8A-849F-488B-82F8-2FB44A8F8026',
-	'fcm_4a851f8a-849f-488b-82f8-2fb44a8f8026',
+	'33D9D49E-7786-4609-ACFB-1C465EF6E2D6',
+	'fcm_33d9d49e-7786-4609-acfb-1c465ef6e2d6',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'336d7746-daa7-41e0-a64f-4008e5924720',
-	'336d7746-daa7-41e0-a64f-4008e5924720@gmail.com',
+	'dc6118e5-7715-4f6d-819d-52f0c2061164',
+	'dc6118e5-7715-4f6d-819d-52f0c2061164@gmail.com',
 	'JOINED',
-	'336D7746-DAA7-41E0-A64F-4008E5924720',
-	'fcm_336d7746-daa7-41e0-a64f-4008e5924720',
-	0,
-	True,
-	'credits_no_paywall'
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'45a58da3-c512-408b-bae9-d0f8cab8a536',
-	'45a58da3-c512-408b-bae9-d0f8cab8a536@gmail.com',
-	'JOINED',
-	'45A58DA3-C512-408B-BAE9-D0F8CAB8A536',
-	'fcm_45a58da3-c512-408b-bae9-d0f8cab8a536',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'064e771b-65a4-4092-943d-9b152bc9d5b0',
-	'064e771b-65a4-4092-943d-9b152bc9d5b0@gmail.com',
-	'JOINED',
-	'064E771B-65A4-4092-943D-9B152BC9D5B0',
-	'fcm_064e771b-65a4-4092-943d-9b152bc9d5b0',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'0867c75b-3c03-47ca-8f7f-1efc38b250a6',
-	'0867c75b-3c03-47ca-8f7f-1efc38b250a6@gmail.com',
-	'JOINED',
-	'0867C75B-3C03-47CA-8F7F-1EFC38B250A6',
-	'fcm_0867c75b-3c03-47ca-8f7f-1efc38b250a6',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'692bc741-3273-4cd5-ad26-2ff58b743542',
-	'692bc741-3273-4cd5-ad26-2ff58b743542@gmail.com',
-	'JOINED',
-	'692BC741-3273-4CD5-AD26-2FF58B743542',
-	'fcm_692bc741-3273-4cd5-ad26-2ff58b743542',
-	0,
-	True,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'2c677589-29f1-4aa1-888d-cc1b7ec20fea',
-	'2c677589-29f1-4aa1-888d-cc1b7ec20fea@gmail.com',
-	'JOINED',
-	'2C677589-29F1-4AA1-888D-CC1B7EC20FEA',
-	'fcm_2c677589-29f1-4aa1-888d-cc1b7ec20fea',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'7f2ccf63-bde3-4726-8250-3222b13acb91',
-	'7f2ccf63-bde3-4726-8250-3222b13acb91@gmail.com',
-	'JOINED',
-	'7F2CCF63-BDE3-4726-8250-3222B13ACB91',
-	'fcm_7f2ccf63-bde3-4726-8250-3222b13acb91',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'7b0be486-e5e9-40e2-a6d5-6388535d83d5',
-	'7b0be486-e5e9-40e2-a6d5-6388535d83d5@gmail.com',
-	'JOINED',
-	'7B0BE486-E5E9-40E2-A6D5-6388535D83D5',
-	'fcm_7b0be486-e5e9-40e2-a6d5-6388535d83d5',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'1935a1ec-6922-48d9-93a7-606708ce860c',
-	'1935a1ec-6922-48d9-93a7-606708ce860c@gmail.com',
-	'JOINED',
-	'1935A1EC-6922-48D9-93A7-606708CE860C',
-	'fcm_1935a1ec-6922-48d9-93a7-606708ce860c',
+	'DC6118E5-7715-4F6D-819D-52F0C2061164',
+	'fcm_dc6118e5-7715-4f6d-819d-52f0c2061164',
 	0,
 	True,
 	'credits_no_paywall'
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'4add03f0-7982-4cd4-bcba-9aa03f3f8044',
-	'4add03f0-7982-4cd4-bcba-9aa03f3f8044@gmail.com',
+	'9f8a7d78-4376-46ce-9571-d7dea5b8be32',
+	'9f8a7d78-4376-46ce-9571-d7dea5b8be32@gmail.com',
 	'JOINED',
-	'4ADD03F0-7982-4CD4-BCBA-9AA03F3F8044',
-	'fcm_4add03f0-7982-4cd4-bcba-9aa03f3f8044',
+	'9F8A7D78-4376-46CE-9571-D7DEA5B8BE32',
+	'fcm_9f8a7d78-4376-46ce-9571-d7dea5b8be32',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'caad72e2-1a40-42f4-84c4-e3cb05d3783b',
-	'caad72e2-1a40-42f4-84c4-e3cb05d3783b@gmail.com',
+	'bff695f3-e2c6-43e1-95ff-1027d2254b88',
+	'bff695f3-e2c6-43e1-95ff-1027d2254b88@gmail.com',
 	'JOINED',
-	'CAAD72E2-1A40-42F4-84C4-E3CB05D3783B',
-	'fcm_caad72e2-1a40-42f4-84c4-e3cb05d3783b',
+	'BFF695F3-E2C6-43E1-95FF-1027D2254B88',
+	'fcm_bff695f3-e2c6-43e1-95ff-1027d2254b88',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'030f51b9-a195-485e-9f22-e278546869af',
-	'030f51b9-a195-485e-9f22-e278546869af@gmail.com',
+	'afe53779-91dd-43b5-8c6e-ab8300c4cd0c',
+	'afe53779-91dd-43b5-8c6e-ab8300c4cd0c@gmail.com',
 	'JOINED',
-	'030F51B9-A195-485E-9F22-E278546869AF',
-	'fcm_030f51b9-a195-485e-9f22-e278546869af',
+	'AFE53779-91DD-43B5-8C6E-AB8300C4CD0C',
+	'fcm_afe53779-91dd-43b5-8c6e-ab8300c4cd0c',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'cb8fd6fc-ef74-416f-894b-eb1d16ba3774',
-	'cb8fd6fc-ef74-416f-894b-eb1d16ba3774@gmail.com',
+	'be5066f4-bc2d-49c0-876f-5dae260058b2',
+	'be5066f4-bc2d-49c0-876f-5dae260058b2@gmail.com',
 	'JOINED',
-	'CB8FD6FC-EF74-416F-894B-EB1D16BA3774',
-	'fcm_cb8fd6fc-ef74-416f-894b-eb1d16ba3774',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'cc58d47f-92a8-4528-b1f8-732672aaffaa',
-	'cc58d47f-92a8-4528-b1f8-732672aaffaa@gmail.com',
-	'JOINED',
-	'CC58D47F-92A8-4528-B1F8-732672AAFFAA',
-	'fcm_cc58d47f-92a8-4528-b1f8-732672aaffaa',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'41f4139d-a598-48e4-a592-82c2de135fbc',
-	'41f4139d-a598-48e4-a592-82c2de135fbc@gmail.com',
-	'JOINED',
-	'41F4139D-A598-48E4-A592-82C2DE135FBC',
-	'fcm_41f4139d-a598-48e4-a592-82c2de135fbc',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'bf5e7e2b-1797-4efb-93ce-12bf3a61466b',
-	'bf5e7e2b-1797-4efb-93ce-12bf3a61466b@gmail.com',
-	'JOINED',
-	'BF5E7E2B-1797-4EFB-93CE-12BF3A61466B',
-	'fcm_bf5e7e2b-1797-4efb-93ce-12bf3a61466b',
+	'BE5066F4-BC2D-49C0-876F-5DAE260058B2',
+	'fcm_be5066f4-bc2d-49c0-876f-5dae260058b2',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'a4a7ac12-7a76-4965-b2d1-b525e75a79f0',
-	'a4a7ac12-7a76-4965-b2d1-b525e75a79f0@gmail.com',
+	'32691316-2867-449d-9617-63c5bb627c40',
+	'32691316-2867-449d-9617-63c5bb627c40@gmail.com',
 	'JOINED',
-	'A4A7AC12-7A76-4965-B2D1-B525E75A79F0',
-	'fcm_a4a7ac12-7a76-4965-b2d1-b525e75a79f0',
+	'32691316-2867-449D-9617-63C5BB627C40',
+	'fcm_32691316-2867-449d-9617-63c5bb627c40',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'017cac97-0c22-40e2-b472-3108700d9a9b',
-	'017cac97-0c22-40e2-b472-3108700d9a9b@gmail.com',
+	'76b096a2-1c22-4123-b080-e79718920149',
+	'76b096a2-1c22-4123-b080-e79718920149@gmail.com',
 	'JOINED',
-	'017CAC97-0C22-40E2-B472-3108700D9A9B',
-	'fcm_017cac97-0c22-40e2-b472-3108700d9a9b',
+	'76B096A2-1C22-4123-B080-E79718920149',
+	'fcm_76b096a2-1c22-4123-b080-e79718920149',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'ac74fbc7-ce24-4414-a017-a78bc7800e02',
-	'ac74fbc7-ce24-4414-a017-a78bc7800e02@gmail.com',
+	'e670ee6a-2315-46da-abe4-7a6561fa1219',
+	'e670ee6a-2315-46da-abe4-7a6561fa1219@gmail.com',
 	'JOINED',
-	'AC74FBC7-CE24-4414-A017-A78BC7800E02',
-	'fcm_ac74fbc7-ce24-4414-a017-a78bc7800e02',
+	'E670EE6A-2315-46DA-ABE4-7A6561FA1219',
+	'fcm_e670ee6a-2315-46da-abe4-7a6561fa1219',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'ff01a0f0-333f-4057-afa9-c785358fa657',
-	'ff01a0f0-333f-4057-afa9-c785358fa657@gmail.com',
+	'79a0e4c4-01d7-4396-8db5-233156119d20',
+	'79a0e4c4-01d7-4396-8db5-233156119d20@gmail.com',
 	'JOINED',
-	'FF01A0F0-333F-4057-AFA9-C785358FA657',
-	'fcm_ff01a0f0-333f-4057-afa9-c785358fa657',
+	'79A0E4C4-01D7-4396-8DB5-233156119D20',
+	'fcm_79a0e4c4-01d7-4396-8db5-233156119d20',
+	0,
+	True,
+	'credits_no_paywall'
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'f82a6ec3-9029-4c06-b6dc-7162815a0ea8',
+	'f82a6ec3-9029-4c06-b6dc-7162815a0ea8@gmail.com',
+	'JOINED',
+	'F82A6EC3-9029-4C06-B6DC-7162815A0EA8',
+	'fcm_f82a6ec3-9029-4c06-b6dc-7162815a0ea8',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'eb9f9f89-3145-4dc1-9fb1-8c8fa436ae9e',
+	'eb9f9f89-3145-4dc1-9fb1-8c8fa436ae9e@gmail.com',
+	'JOINED',
+	'EB9F9F89-3145-4DC1-9FB1-8C8FA436AE9E',
+	'fcm_eb9f9f89-3145-4dc1-9fb1-8c8fa436ae9e',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'ba6dfcf1-e111-45e5-b1ba-abb7c182d6d0',
+	'ba6dfcf1-e111-45e5-b1ba-abb7c182d6d0@gmail.com',
+	'JOINED',
+	'BA6DFCF1-E111-45E5-B1BA-ABB7C182D6D0',
+	'fcm_ba6dfcf1-e111-45e5-b1ba-abb7c182d6d0',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'34a2965f-f154-4d9b-8aca-a4edb3f38180',
+	'34a2965f-f154-4d9b-8aca-a4edb3f38180@gmail.com',
+	'JOINED',
+	'34A2965F-F154-4D9B-8ACA-A4EDB3F38180',
+	'fcm_34a2965f-f154-4d9b-8aca-a4edb3f38180',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'992d7df9-da54-4a2b-b5c9-e0837fa5de9f',
+	'992d7df9-da54-4a2b-b5c9-e0837fa5de9f@gmail.com',
+	'JOINED',
+	'992D7DF9-DA54-4A2B-B5C9-E0837FA5DE9F',
+	'fcm_992d7df9-da54-4a2b-b5c9-e0837fa5de9f',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'012b9b94-152c-4db6-90df-3d4936fb8c9f',
+	'012b9b94-152c-4db6-90df-3d4936fb8c9f@gmail.com',
+	'JOINED',
+	'012B9B94-152C-4DB6-90DF-3D4936FB8C9F',
+	'fcm_012b9b94-152c-4db6-90df-3d4936fb8c9f',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'a14b7f87-eebf-4188-90ba-5eb63306670d',
+	'a14b7f87-eebf-4188-90ba-5eb63306670d@gmail.com',
+	'JOINED',
+	'A14B7F87-EEBF-4188-90BA-5EB63306670D',
+	'fcm_a14b7f87-eebf-4188-90ba-5eb63306670d',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'fcab3a45-01fb-453f-a64f-ba7251d8fd01',
-	'fcab3a45-01fb-453f-a64f-ba7251d8fd01@gmail.com',
+	'af9f8c51-1f21-467b-bb7b-fbd1764deaab',
+	'af9f8c51-1f21-467b-bb7b-fbd1764deaab@gmail.com',
 	'JOINED',
-	'FCAB3A45-01FB-453F-A64F-BA7251D8FD01',
-	'fcm_fcab3a45-01fb-453f-a64f-ba7251d8fd01',
+	'AF9F8C51-1F21-467B-BB7B-FBD1764DEAAB',
+	'fcm_af9f8c51-1f21-467b-bb7b-fbd1764deaab',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'4ec874cb-d3f8-4eae-8794-5e2f29388d47',
-	'4ec874cb-d3f8-4eae-8794-5e2f29388d47@gmail.com',
+	'bdf35524-ce41-4af5-acd2-bd44b3aeb713',
+	'bdf35524-ce41-4af5-acd2-bd44b3aeb713@gmail.com',
 	'JOINED',
-	'4EC874CB-D3F8-4EAE-8794-5E2F29388D47',
-	'fcm_4ec874cb-d3f8-4eae-8794-5e2f29388d47',
+	'BDF35524-CE41-4AF5-ACD2-BD44B3AEB713',
+	'fcm_bdf35524-ce41-4af5-acd2-bd44b3aeb713',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'740c5c4c-d631-4701-bf80-a99e0527135c',
-	'740c5c4c-d631-4701-bf80-a99e0527135c@gmail.com',
+	'fa0ef4d8-8d3e-4b3a-9bb6-6e5a993a19d8',
+	'fa0ef4d8-8d3e-4b3a-9bb6-6e5a993a19d8@gmail.com',
 	'JOINED',
-	'740C5C4C-D631-4701-BF80-A99E0527135C',
-	'fcm_740c5c4c-d631-4701-bf80-a99e0527135c',
+	'FA0EF4D8-8D3E-4B3A-9BB6-6E5A993A19D8',
+	'fcm_fa0ef4d8-8d3e-4b3a-9bb6-6e5a993a19d8',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'd9b59df8-24bd-4425-9da9-81a855dc0c46',
-	'd9b59df8-24bd-4425-9da9-81a855dc0c46@gmail.com',
+	'79dfe82f-6cf4-4890-b53b-c2c22c1d2a63',
+	'79dfe82f-6cf4-4890-b53b-c2c22c1d2a63@gmail.com',
 	'JOINED',
-	'D9B59DF8-24BD-4425-9DA9-81A855DC0C46',
-	'fcm_d9b59df8-24bd-4425-9da9-81a855dc0c46',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'dfe14660-9989-4baa-9aaf-5b50970e0793',
-	'dfe14660-9989-4baa-9aaf-5b50970e0793@gmail.com',
-	'JOINED',
-	'DFE14660-9989-4BAA-9AAF-5B50970E0793',
-	'fcm_dfe14660-9989-4baa-9aaf-5b50970e0793',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'3c72cf80-088a-44ab-abd6-92ddb472d2b8',
-	'3c72cf80-088a-44ab-abd6-92ddb472d2b8@gmail.com',
-	'JOINED',
-	'3C72CF80-088A-44AB-ABD6-92DDB472D2B8',
-	'fcm_3c72cf80-088a-44ab-abd6-92ddb472d2b8',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'108170e6-2d5d-4e3c-bb44-1e8cc7c93d65',
-	'108170e6-2d5d-4e3c-bb44-1e8cc7c93d65@gmail.com',
-	'JOINED',
-	'108170E6-2D5D-4E3C-BB44-1E8CC7C93D65',
-	'fcm_108170e6-2d5d-4e3c-bb44-1e8cc7c93d65',
+	'79DFE82F-6CF4-4890-B53B-C2C22C1D2A63',
+	'fcm_79dfe82f-6cf4-4890-b53b-c2c22c1d2a63',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'78c99946-cefc-41c1-a362-a9a843ffa212',
-	'78c99946-cefc-41c1-a362-a9a843ffa212@gmail.com',
+	'fa013f98-7b51-432f-95ed-cc47147d0d0d',
+	'fa013f98-7b51-432f-95ed-cc47147d0d0d@gmail.com',
 	'JOINED',
-	'78C99946-CEFC-41C1-A362-A9A843FFA212',
-	'fcm_78c99946-cefc-41c1-a362-a9a843ffa212',
+	'FA013F98-7B51-432F-95ED-CC47147D0D0D',
+	'fcm_fa013f98-7b51-432f-95ed-cc47147d0d0d',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'75df56b1-66b2-4975-a815-e559bbb3925a',
-	'75df56b1-66b2-4975-a815-e559bbb3925a@gmail.com',
+	'd51333a0-bc98-4678-a491-b91ce956dbc6',
+	'd51333a0-bc98-4678-a491-b91ce956dbc6@gmail.com',
 	'JOINED',
-	'75DF56B1-66B2-4975-A815-E559BBB3925A',
-	'fcm_75df56b1-66b2-4975-a815-e559bbb3925a',
+	'D51333A0-BC98-4678-A491-B91CE956DBC6',
+	'fcm_d51333a0-bc98-4678-a491-b91ce956dbc6',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'4c425de2-b87c-40ef-bd62-c08e683a93ef',
-	'4c425de2-b87c-40ef-bd62-c08e683a93ef@gmail.com',
+	'bfcda7ce-67ab-42c9-af7d-2571f177d814',
+	'bfcda7ce-67ab-42c9-af7d-2571f177d814@gmail.com',
 	'JOINED',
-	'4C425DE2-B87C-40EF-BD62-C08E683A93EF',
-	'fcm_4c425de2-b87c-40ef-bd62-c08e683a93ef',
+	'BFCDA7CE-67AB-42C9-AF7D-2571F177D814',
+	'fcm_bfcda7ce-67ab-42c9-af7d-2571f177d814',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'f1682470-16d8-4b59-8bec-e191bdc536b0',
+	'f1682470-16d8-4b59-8bec-e191bdc536b0@gmail.com',
+	'JOINED',
+	'F1682470-16D8-4B59-8BEC-E191BDC536B0',
+	'fcm_f1682470-16d8-4b59-8bec-e191bdc536b0',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'c15add68-3bef-4f3e-99a1-a807ee5137b8',
+	'c15add68-3bef-4f3e-99a1-a807ee5137b8@gmail.com',
+	'JOINED',
+	'C15ADD68-3BEF-4F3E-99A1-A807EE5137B8',
+	'fcm_c15add68-3bef-4f3e-99a1-a807ee5137b8',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'6f819483-e6ba-45dc-915f-19bf0d7bb4f7',
+	'6f819483-e6ba-45dc-915f-19bf0d7bb4f7@gmail.com',
+	'JOINED',
+	'6F819483-E6BA-45DC-915F-19BF0D7BB4F7',
+	'fcm_6f819483-e6ba-45dc-915f-19bf0d7bb4f7',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'92e66079-f639-4312-b895-61b14c4c53a3',
+	'92e66079-f639-4312-b895-61b14c4c53a3@gmail.com',
+	'JOINED',
+	'92E66079-F639-4312-B895-61B14C4C53A3',
+	'fcm_92e66079-f639-4312-b895-61b14c4c53a3',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'01cb31f9-7ab2-4afe-8daf-325a41a8f18f',
-	'01cb31f9-7ab2-4afe-8daf-325a41a8f18f@gmail.com',
+	'34925859-f828-4620-9e2a-5c661b30da62',
+	'34925859-f828-4620-9e2a-5c661b30da62@gmail.com',
 	'JOINED',
-	'01CB31F9-7AB2-4AFE-8DAF-325A41A8F18F',
-	'fcm_01cb31f9-7ab2-4afe-8daf-325a41a8f18f',
+	'34925859-F828-4620-9E2A-5C661B30DA62',
+	'fcm_34925859-f828-4620-9e2a-5c661b30da62',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'3e24ba34-1a46-431c-8838-cc8f88896a0c',
+	'3e24ba34-1a46-431c-8838-cc8f88896a0c@gmail.com',
+	'JOINED',
+	'3E24BA34-1A46-431C-8838-CC8F88896A0C',
+	'fcm_3e24ba34-1a46-431c-8838-cc8f88896a0c',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'54cfe738-5069-406b-80c3-33a812d46e16',
+	'54cfe738-5069-406b-80c3-33a812d46e16@gmail.com',
+	'JOINED',
+	'54CFE738-5069-406B-80C3-33A812D46E16',
+	'fcm_54cfe738-5069-406b-80c3-33a812d46e16',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'1fca0aa1-da02-4eb9-8429-9a82d8b80153',
-	'1fca0aa1-da02-4eb9-8429-9a82d8b80153@gmail.com',
+	'86205c3b-2c7d-4e24-95ea-94f15e5ed065',
+	'86205c3b-2c7d-4e24-95ea-94f15e5ed065@gmail.com',
 	'JOINED',
-	'1FCA0AA1-DA02-4EB9-8429-9A82D8B80153',
-	'fcm_1fca0aa1-da02-4eb9-8429-9a82d8b80153',
+	'86205C3B-2C7D-4E24-95EA-94F15E5ED065',
+	'fcm_86205c3b-2c7d-4e24-95ea-94f15e5ed065',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'cf05720b-981a-435a-a13d-5f3529ef18e3',
-	'cf05720b-981a-435a-a13d-5f3529ef18e3@gmail.com',
+	'3834004a-85c5-45b7-9050-c794a8bbea0a',
+	'3834004a-85c5-45b7-9050-c794a8bbea0a@gmail.com',
 	'JOINED',
-	'CF05720B-981A-435A-A13D-5F3529EF18E3',
-	'fcm_cf05720b-981a-435a-a13d-5f3529ef18e3',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'89e3c837-fe46-4f7d-b1a2-27e378d7cfd2',
-	'89e3c837-fe46-4f7d-b1a2-27e378d7cfd2@gmail.com',
-	'JOINED',
-	'89E3C837-FE46-4F7D-B1A2-27E378D7CFD2',
-	'fcm_89e3c837-fe46-4f7d-b1a2-27e378d7cfd2',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'9d01e136-404d-4a60-ad70-9dc8d2ca196e',
-	'9d01e136-404d-4a60-ad70-9dc8d2ca196e@gmail.com',
-	'JOINED',
-	'9D01E136-404D-4A60-AD70-9DC8D2CA196E',
-	'fcm_9d01e136-404d-4a60-ad70-9dc8d2ca196e',
-	0,
-	False,
-	NULL
-);
-
-INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'42388c02-6510-487f-90d9-f6a0f5f1774d',
-	'42388c02-6510-487f-90d9-f6a0f5f1774d@gmail.com',
-	'JOINED',
-	'42388C02-6510-487F-90D9-F6A0F5F1774D',
-	'fcm_42388c02-6510-487f-90d9-f6a0f5f1774d',
+	'3834004A-85C5-45B7-9050-C794A8BBEA0A',
+	'fcm_3834004a-85c5-45b7-9050-c794a8bbea0a',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'1133c8a9-7de0-4d75-b253-8b0251259978',
-	'1133c8a9-7de0-4d75-b253-8b0251259978@gmail.com',
+	'fe533167-f247-42c3-aed0-4dc4a5c922e5',
+	'fe533167-f247-42c3-aed0-4dc4a5c922e5@gmail.com',
 	'JOINED',
-	'1133C8A9-7DE0-4D75-B253-8B0251259978',
-	'fcm_1133c8a9-7de0-4d75-b253-8b0251259978',
+	'FE533167-F247-42C3-AED0-4DC4A5C922E5',
+	'fcm_fe533167-f247-42c3-aed0-4dc4a5c922e5',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'6b505633-2339-4cb5-81cb-ae49dbe91b61',
-	'6b505633-2339-4cb5-81cb-ae49dbe91b61@gmail.com',
+	'f4c83999-a1ed-4725-b37f-4d658d21124b',
+	'f4c83999-a1ed-4725-b37f-4d658d21124b@gmail.com',
 	'JOINED',
-	'6B505633-2339-4CB5-81CB-AE49DBE91B61',
-	'fcm_6b505633-2339-4cb5-81cb-ae49dbe91b61',
+	'F4C83999-A1ED-4725-B37F-4D658D21124B',
+	'fcm_f4c83999-a1ed-4725-b37f-4d658d21124b',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'002d084e-5ae1-42eb-99b2-30bd1e58dfb3',
+	'002d084e-5ae1-42eb-99b2-30bd1e58dfb3@gmail.com',
+	'JOINED',
+	'002D084E-5AE1-42EB-99B2-30BD1E58DFB3',
+	'fcm_002d084e-5ae1-42eb-99b2-30bd1e58dfb3',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'fa96e470-f3cd-4367-86ad-0d3494ec300e',
+	'fa96e470-f3cd-4367-86ad-0d3494ec300e@gmail.com',
+	'JOINED',
+	'FA96E470-F3CD-4367-86AD-0D3494EC300E',
+	'fcm_fa96e470-f3cd-4367-86ad-0d3494ec300e',
 	0,
 	True,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'dd8da09b-7739-4f9f-8f2b-28ecff5f4ed0',
-	'dd8da09b-7739-4f9f-8f2b-28ecff5f4ed0@gmail.com',
+	'7f732493-859b-444f-9fe0-8701f550b493',
+	'7f732493-859b-444f-9fe0-8701f550b493@gmail.com',
 	'JOINED',
-	'DD8DA09B-7739-4F9F-8F2B-28ECFF5F4ED0',
-	'fcm_dd8da09b-7739-4f9f-8f2b-28ecff5f4ed0',
+	'7F732493-859B-444F-9FE0-8701F550B493',
+	'fcm_7f732493-859b-444f-9fe0-8701f550b493',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'67ee11bc-3d14-40a4-86a1-bb741fe96498',
-	'67ee11bc-3d14-40a4-86a1-bb741fe96498@gmail.com',
+	'dd1d6203-ec16-442a-809d-b998abcbcd55',
+	'dd1d6203-ec16-442a-809d-b998abcbcd55@gmail.com',
 	'JOINED',
-	'67EE11BC-3D14-40A4-86A1-BB741FE96498',
-	'fcm_67ee11bc-3d14-40a4-86a1-bb741fe96498',
+	'DD1D6203-EC16-442A-809D-B998ABCBCD55',
+	'fcm_dd1d6203-ec16-442a-809d-b998abcbcd55',
+	0,
+	True,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'eea53501-c0b1-4fb8-a3aa-30d23c84b684',
+	'eea53501-c0b1-4fb8-a3aa-30d23c84b684@gmail.com',
+	'JOINED',
+	'EEA53501-C0B1-4FB8-A3AA-30D23C84B684',
+	'fcm_eea53501-c0b1-4fb8-a3aa-30d23c84b684',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'16432ba6-5104-4fd9-95ae-d9446cceacd7',
-	'16432ba6-5104-4fd9-95ae-d9446cceacd7@gmail.com',
+	'fa4b0084-3b7a-4dfa-8248-02e98bfc31f6',
+	'fa4b0084-3b7a-4dfa-8248-02e98bfc31f6@gmail.com',
 	'JOINED',
-	'16432BA6-5104-4FD9-95AE-D9446CCEACD7',
-	'fcm_16432ba6-5104-4fd9-95ae-d9446cceacd7',
+	'FA4B0084-3B7A-4DFA-8248-02E98BFC31F6',
+	'fcm_fa4b0084-3b7a-4dfa-8248-02e98bfc31f6',
 	0,
 	False,
 	NULL
 );
 
 INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
-	'9d86975a-6912-4bcc-a213-2a819c96c73a',
-	'9d86975a-6912-4bcc-a213-2a819c96c73a@gmail.com',
+	'b107e438-763d-484b-afed-da242faed58d',
+	'b107e438-763d-484b-afed-da242faed58d@gmail.com',
 	'JOINED',
-	'9D86975A-6912-4BCC-A213-2A819C96C73A',
-	'fcm_9d86975a-6912-4bcc-a213-2a819c96c73a',
+	'B107E438-763D-484B-AFED-DA242FAED58D',
+	'fcm_b107e438-763d-484b-afed-da242faed58d',
+	0,
+	False,
+	NULL
+);
+
+INSERT INTO "public"."users" ("id", "email", "payment_status", "ios_id", "fcm_token", "credits", "finetune_access", "experiment") VALUES (
+	'7539a6c5-761c-4b37-91c3-cb264b08c634',
+	'7539a6c5-761c-4b37-91c3-cb264b08c634@gmail.com',
+	'JOINED',
+	'7539A6C5-761C-4B37-91C3-CB264B08C634',
+	'fcm_7539a6c5-761c-4b37-91c3-cb264b08c634',
 	0,
 	False,
 	NULL
