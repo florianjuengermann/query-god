@@ -6,9 +6,10 @@ from pydantic import BaseModel, Extra
 
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
-from langchain.chains.sql_database.prompt import PROMPT
 from langchain.input import print_text
 from langchain.llms.base import LLM
+
+from prompt import PROMPT
 from sql_database import SQLDatabase
 
 
@@ -29,6 +30,7 @@ class SQLDatabaseChain(Chain, BaseModel):
     """SQL Database to connect to."""
     input_key: str = "query"  #: :meta private:
     output_key: str = "result"  #: :meta private:
+    debug: bool = False  # even more verbose
 
     class Config:
         """Configuration for this pydantic object."""
@@ -53,10 +55,8 @@ class SQLDatabaseChain(Chain, BaseModel):
         return [self.output_key]
 
     def _call(self, inputs: Dict[str, str]) -> Dict[str, str]:
-        llm_chain = LLMChain(llm=self.llm, prompt=PROMPT)
+        llm_chain = LLMChain(llm=self.llm, prompt=PROMPT, verbose=self.debug)
         input_text = f"{inputs[self.input_key]} \nSQLQuery:"
-        if self.verbose:
-            print_text(input_text)
         llm_inputs = {
             "input": input_text,
             "dialect": self.database.dialect,
@@ -65,6 +65,7 @@ class SQLDatabaseChain(Chain, BaseModel):
         }
         sql_cmd = llm_chain.predict(**llm_inputs)
         if self.verbose:
+            print_text(input_text)
             print_text(sql_cmd, color="green")
         result = self.database.run(sql_cmd)
         if self.verbose:
