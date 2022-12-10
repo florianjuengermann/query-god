@@ -34,6 +34,7 @@ class SQLDatabaseChain(Chain, BaseModel):
     input_key: str = "query"  #: :meta private:
     output_key: str = "result"  #: :meta private:
     debug: bool = False  # even more verbose
+    custom_memory: dict = {}
 
     class Config:
         """Configuration for this pydantic object."""
@@ -55,7 +56,7 @@ class SQLDatabaseChain(Chain, BaseModel):
 
         :meta private:
         """
-        return [self.output_key, "query_result", "query_result_summary", "sql_cmd"]
+        return [self.output_key]
 
     def _call(self, inputs: Dict[str, str]) -> Dict[str, str]:
         llm_chain = LLMChain(llm=self.llm, prompt=PROMPT, verbose=self.debug)
@@ -77,7 +78,7 @@ class SQLDatabaseChain(Chain, BaseModel):
         else:
             lang_output = f"{len(result)} rows returned:"
             if len(result) <= 3:
-                lang_output = "\n".join(map(str, result))
+                lang_output += "\n" + "\n".join(map(str, result))
             else:
                 lang_output += f"\n[{result[0]}, ...]"
                 lang_output += f"\nAll results are stored in query_result.json"
@@ -93,9 +94,9 @@ class SQLDatabaseChain(Chain, BaseModel):
         final_result = llm_chain.predict(**llm_inputs)
         if self.verbose:
             print_text(final_result, color="green")
-        return {
-            self.output_key: final_result,
+        self.custom_memory = {
             "query_result": result,
             "sql_cmd": sql_cmd,
             "query_result_summary": lang_output,
         }
+        return {self.output_key: final_result}
