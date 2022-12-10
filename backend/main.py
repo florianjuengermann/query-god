@@ -6,8 +6,8 @@ import os
 import sys
 import re
 
-from modules.database.sql_chain import SQLDatabaseChain
-from modules.database.sql_database import SQLDatabase
+from backend.modules.database.sql_chain import SQLDatabaseChain
+from backend.modules.database.sql_database import SQLDatabase
 
 from tempfile import NamedTemporaryFile
 
@@ -39,8 +39,9 @@ def run(history):
 
     # prase history
     prompt = history[-1]["text"]  # TODO
-
-    db = SQLDatabase.from_uri(os.getenv("DB_CONNECTION_STRING"))
+    db_connection_string = os.environ.get("DB_CONNECTION_STRING")
+    print("db_connection_string set:", db_connection_string is not None)
+    db = SQLDatabase.from_uri(db_connection_string)
     print("Tables found:", db._all_tables)
 
     db_chain = SQLDatabaseChain(
@@ -92,10 +93,26 @@ def run(history):
     # print(debug_output)
     print("DB output:", db_chain.custom_memory)
 
-    return {
+    data = {
         "debug_output": debug_output,
         **db_chain.custom_memory,
     }
+
+    entry = {
+        "user": "bot",
+        "text": r,
+        "debug": debug_output,
+    }
+    if db_chain.custom_memory:
+        entry["code"] = {
+            "code": db_chain.custom_memory["sql_cmd"],
+            "language": "sql",
+            "executable": False,
+        }
+        entry["tableOutput"] = db_chain.custom_memory["query_result"]
+        entry["tableOutputSummary"] = db_chain.custom_memory["query_result_summary"]
+
+    return [*history, entry]
 
 
 if __name__ == "__main__":

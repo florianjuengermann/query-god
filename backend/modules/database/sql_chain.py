@@ -11,9 +11,9 @@ from langchain.chains.llm import LLMChain
 from langchain.input import print_text
 from langchain.llms.base import LLM
 
-from modules.database.prompt import PROMPT
-from modules.database.sql_database import SQLDatabase
-from modules.database.encoder import UUIDEncoder
+from backend.modules.database.prompt import PROMPT
+from backend.modules.database.sql_database import SQLDatabase
+from backend.modules.database.encoder import UUIDEncoder
 
 
 class SQLDatabaseChain(Chain, BaseModel):
