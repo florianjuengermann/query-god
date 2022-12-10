@@ -4,6 +4,8 @@ from typing import Dict, List, Any
 
 from pydantic import BaseModel, Extra
 
+import json
+
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.input import print_text
@@ -78,6 +80,8 @@ class SQLDatabaseChain(Chain, BaseModel):
                 lang_output = f"{len(result)} rows returned:"
                 lang_output += f"\n[{result[0]}, ...]"
                 lang_output += f"\nAll results are stored in query_result.json"
+                with open("query_result.json", "w") as f:
+                    json.dump(result, f)
 
         if self.verbose:
             print_text("\nSQLResult: ")
