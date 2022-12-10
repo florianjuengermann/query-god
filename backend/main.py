@@ -1,4 +1,4 @@
-from langchain import OpenAI, SelfAskWithSearchChain, LLMMathChain
+from langchain import OpenAI, ConversationChain, LLMMathChain
 from sqlalchemy.engine import Engine, create_engine
 from langchain.agents import initialize_agent, Tool
 
@@ -18,6 +18,15 @@ db_chain = SQLDatabaseChain(
     debug=False
 )
 
+last_sql_cmd = None
+
+
+def run_db_chain(text: str):
+    global last_sql_cmd
+    output = db_chain({db_chain.input_keys[0]: text})
+    last_sql_cmd = output
+    return output[db_chain.output_keys[0]]
+
 
 # Load the tool configs that are needed.
 llm = OpenAI(temperature=0)
@@ -25,7 +34,7 @@ llm_math_chain = LLMMathChain(llm=llm, verbose=True)
 tools = [
     Tool(
         name="Database",
-        func=db_chain.run,
+        func=run_db_chain,
         description="useful for when you need to answer questions about data in your database"
     ),
     Tool(
@@ -40,4 +49,8 @@ agent = initialize_agent(
     tools, llm, agent="zero-shot-react-description", verbose=True)
 
 
-agent.run("We had a bug yesterday. Are there any users that are stuck in training?")
+r = agent.run(
+    "We had a bug yesterday. Are there any users that are stuck in training?")
+
+print("Response:", r)
+print("Last SQL Command:", last_sql_cmd)

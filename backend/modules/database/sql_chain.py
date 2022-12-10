@@ -2,7 +2,7 @@
 """Chain for interacting with SQL Database."""
 from typing import Dict, List, Any
 
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel, Extra, Field
 
 import json
 
@@ -54,7 +54,7 @@ class SQLDatabaseChain(Chain, BaseModel):
 
         :meta private:
         """
-        return [self.output_key]
+        return [self.output_key, "query_result", "query_result_summary", "sql_cmd"]
 
     def _call(self, inputs: Dict[str, str]) -> Dict[str, str]:
         llm_chain = LLMChain(llm=self.llm, prompt=PROMPT, verbose=self.debug)
@@ -74,10 +74,10 @@ class SQLDatabaseChain(Chain, BaseModel):
         if error:
             lang_output = "Error: " + error
         else:
+            lang_output = f"{len(result)} rows returned:"
             if len(result) <= 3:
                 lang_output = "\n".join(map(str, result))
             else:
-                lang_output = f"{len(result)} rows returned:"
                 lang_output += f"\n[{result[0]}, ...]"
                 lang_output += f"\nAll results are stored in query_result.json"
                 with open("query_result.json", "w") as f:
@@ -92,4 +92,9 @@ class SQLDatabaseChain(Chain, BaseModel):
         final_result = llm_chain.predict(**llm_inputs)
         if self.verbose:
             print_text(final_result, color="green")
-        return {self.output_key: final_result}
+        return {
+            self.output_key: final_result,
+            "query_result": result,
+            "sql_cmd": sql_cmd,
+            "query_result_summary": lang_output,
+        }
