@@ -1,0 +1,114 @@
+You have access to a SQL database and can run queries. You can run queries to get more information and it will be used in the next prompt. For example, if you don’t know the schema you should run a query for it. 
+
+Check if you have enough information to answer question otherwise write out the thought process step-by-step of how you could solve the question. Make sure to only query for the relevant things instead of asking for everything. Limit to the public tables.
+
+Execute the plan and if you need to run a query you should stop answering. 
+
+For SQL queries use the format. “QUERY: SELECT * FROM X;” Try to limit the query so you only ask for unique rows if it's possible. After QUERY stop.
+
+Database schema:
+HEADER:
+"column_name","data_type","table_name"
+BODY:
+"email_change_sent_at","timestamp with time zone","users"
+"id","uuid","users"
+"banned_until","timestamp with time zone","users"
+"reauthentication_sent_at","timestamp with time zone","users"
+"id","uuid","generations"
+"created_at","timestamp with time zone","generations"
+"updated_at","timestamp with time zone","generations"
+"user_id","uuid","generations"
+"input","jsonb","generations"
+"output","jsonb","generations"
+"template_id","uuid","generations"
+"model_id","uuid","generations"
+"output_no_wm","jsonb","generations"
+"num_retries","integer","generations"
+"id","uuid","models"
+"user_id","uuid","models"
+"training_images","jsonb","models"
+"created_at","timestamp with time zone","models"
+"updated_at","timestamp with time zone","models"
+"estimated_time_to_completion","timestamp with time zone","models"
+"face_attributes","jsonb","models"
+"parameters","jsonb","models"
+"id","uuid","users"
+"credits","bigint","users"
+"finetune_access","boolean","users"
+"email_confirmed_at","timestamp with time zone","users"
+"invited_at","timestamp with time zone","users"
+"confirmation_sent_at","timestamp with time zone","users"
+"recovery_sent_at","timestamp with time zone","users"
+"instance_id","uuid","users"
+"last_sign_in_at","timestamp with time zone","users"
+"raw_app_meta_data","jsonb","users"
+"raw_user_meta_data","jsonb","users"
+"is_super_admin","boolean","users"
+"created_at","timestamp with time zone","users"
+"updated_at","timestamp with time zone","users"
+"phone_confirmed_at","timestamp with time zone","users"
+"phone_change_sent_at","timestamp with time zone","users"
+"confirmed_at","timestamp with time zone","users"
+"email_change_confirm_status","smallint","users"
+"aud","character varying","users"
+"role","character varying","users"
+"email","character varying","users"
+"encrypted_password","character varying","users"
+"status","text","generations"
+"payment_status","text","users"
+"confirmation_token","character varying","users"
+"email_change_token_current","character varying","users"
+"recovery_token","character varying","users"
+"status","text","models"
+"email_change_token_new","character varying","users"
+"email_change","character varying","users"
+"ios_id","text","users"
+"reauthentication_token","character varying","users"
+"model_name","text","models"
+"gender","text","models"
+"fcm_token","text","users"
+"experiment","text","users"
+"invited_by_id","text","users"
+"phone","character varying","users"
+"email","text","users"
+"phone_change","character varying","users"
+"phone_change_token","character varying","users"
+
+
+Here is an example (DO NOT ANSWER THESE):
+
+QUESTION:
+How many users have been invited and by whom?
+
+Do I have enough information to answer question:
+NO
+
+PLAN:
+1. Check invited_by_id values
+2. Query user table by invited_by_id
+3. Answer the user
+
+QUERY: SELECT DISTINCT status FROM models;
+
+STOP
+
+QUESTION:
+How many models where created yesterday?
+
+Do I have enough information to answer question:
+YES
+
+PLAN:
+1. Query the models for which has been created yesterday
+3. Answer the user
+
+QUERY: SELECT * FROM models WHERE created_at >= CURRENT_DATE - INTERVAL '1 day' AND created_at < CURRENT_DATE;;
+
+STOP
+---
+
+
+QUESTION:
+We had a server problem yesterday, are there some users who are stuck in training?
+
+Do I have enough information to answer question:
