@@ -72,7 +72,7 @@ class SQLDatabase:
             tables.append(table_str)
         return "\n".join(tables)
 
-    def run(self, command: str) -> str:
+    def run(self, command: str) -> tuple[str, list[dict]]:
         """Execute a SQL command and return a string representing the results.
 
         If the statement returns rows, a string of the results is returned.
@@ -84,8 +84,10 @@ class SQLDatabase:
                 cursor = connection.execute(command)
                 if cursor.returns_rows:
                     result = cursor.fetchall()
-                    return str(result)
+                    # to json
+                    json_result = [dict(row) for row in result]
+                    return (None, json_result)
             except Exception as e:
                 print(e)
-                return e.__str__()
-        return ""
+                return (e.__str__(), [])
+        return ("", [])

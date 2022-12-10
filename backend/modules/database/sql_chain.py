@@ -9,8 +9,8 @@ from langchain.chains.llm import LLMChain
 from langchain.input import print_text
 from langchain.llms.base import LLM
 
-from prompt import PROMPT
-from sql_database import SQLDatabase
+from modules.database.prompt import PROMPT
+from modules.database.sql_database import SQLDatabase
 
 
 class SQLDatabaseChain(Chain, BaseModel):
@@ -67,12 +67,23 @@ class SQLDatabaseChain(Chain, BaseModel):
         if self.verbose:
             print_text(input_text)
             print_text(sql_cmd, color="green")
-        result = self.database.run(sql_cmd)
+        error, result = self.database.run(sql_cmd)
+        lang_output = ""
+        if error:
+            lang_output = "Error: " + error
+        else:
+            if len(result) <= 3:
+                lang_output = "\n".join(map(str, result))
+            else:
+                lang_output = f"{len(result)} rows returned:"
+                lang_output += f"\n[{result[0]}, ...]"
+                lang_output += f"\nAll results are stored in query_result.json"
+
         if self.verbose:
             print_text("\nSQLResult: ")
-            print_text(result, color="yellow")
+            print_text(lang_output, color="yellow")
             print_text("\nAnswer:")
-        input_text += f"{sql_cmd}\nSQLResult: {result}\nAnswer:"
+        input_text += f"{sql_cmd}\nSQLResult: {lang_output}\nAnswer:"
         llm_inputs["input"] = input_text
         final_result = llm_chain.predict(**llm_inputs)
         if self.verbose:

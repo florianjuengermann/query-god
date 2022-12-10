@@ -6,7 +6,7 @@ Use the following format:
 
 Question: "Question here"
 SQLQuery: "SQL Query to run"
-SQLResult: "Result of the SQLQuery"
+SQLResult: "Summary of the results of the SQLQuery"
 Answer: "Final answer here"
 
 Only use the following tables:
