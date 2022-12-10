@@ -4,6 +4,8 @@ import { CopyBlock, dracula } from "react-code-blocks";
 import styled from "@emotion/styled";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import alfred from "./alfred.JPG";
+import { Button } from "antd";
 import ReactMarkdown from "react-markdown";
 
 const ChatBubbleWrapper = styled.div`
@@ -29,6 +31,10 @@ const TextBlock = styled.div`
   margin-bottom: 20px;
 `;
 
+const CodeWrapper = styled.div`
+  text-align: left;
+`;
+
 const TextAndImage = styled.div`
   // first element is left aligned and second element is centered use flex box
   display: grid;
@@ -49,34 +55,14 @@ const DebuggerWrapper = styled.div`
   padding: 20px;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+`;
+
 // add props messages
 function ChatBubble({ messages, debugMode }) {
-  // const [messages, setMessages] = useState([
-  //   {
-  //     user: "human",
-  //     text: "We had a server problem yesterday, are there some users who are stuck in training?",
-  //   },
-  //   {
-  //     user: "bot",
-  //     text: "I found 600 users whose models currently have status TRAINING . This is the SQL query that I ran and its output",
-  //     code: "SELECT * FROM models WHERE status = 'TRAINING'",
-  //     debug: `adsas`
-  //     tableOutput: [
-  //       {
-  //         id: 1,
-  //         name: "model1",
-  //         status: "TRAINING",
-  //         created_at: "2021-01-01 00:00:00",
-  //       },
-  //       {
-  //         id: 2,
-  //         name: "model2",
-  //         status: "TRAINING",
-  //         created_at: "2021-01-01 00:00:00",
-  //       },
-  //     ],
-  //   },
-  // ]);
   const columns = [
     {
       title: "id",
@@ -126,20 +112,33 @@ function ChatBubble({ messages, debugMode }) {
                 <Avatar
                   style={{ marginRight: "20px" }}
                   size="medium"
-                  icon={<UserOutlined />}
+                  icon={
+                    message.user === "bot" ? (
+                      <UserOutlined />
+                    ) : (
+                      <img src={alfred} alt="alfred" />
+                    )
+                  }
                 />
                 <TextCentered style={{}}>{message.text}</TextCentered>
               </TextAndImage>
               {message.code && (
                 <TextBlock className="code">
-                  <CopyBlock
-                    language={"sql"}
-                    text={message.code}
-                    showLineNumbers={false}
-                    theme={dracula}
-                    wrapLines={true}
-                    codeBlock
-                  />
+                  <CodeWrapper>
+                    <CopyBlock
+                      language={message.code.language}
+                      text={message.code.code}
+                      showLineNumbers={false}
+                      theme={dracula}
+                      wrapLines={true}
+                      codeBlock
+                    />
+                    {message.code.executable && (
+                      <ButtonWrapper>
+                        <Button type="primary"> Run Workflow </Button>
+                      </ButtonWrapper>
+                    )}
+                  </CodeWrapper>
                 </TextBlock>
               )}
               {message.tableOutput && (
