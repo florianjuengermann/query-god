@@ -1,4 +1,6 @@
 langchain
 openai
+flask==1.0.2
 python-dotenv
 google-search-results
+
