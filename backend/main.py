@@ -3,9 +3,13 @@ from sqlalchemy.engine import Engine, create_engine
 from langchain.agents import initialize_agent, Tool
 
 import os
+import sys
+import re
 
 from modules.database.sql_chain import SQLDatabaseChain
 from modules.database.sql_database import SQLDatabase
+
+from tempfile import NamedTemporaryFile
 
 
 db = SQLDatabase.from_uri(os.getenv("DB_CONNECTION_STRING"))
@@ -18,13 +22,13 @@ db_chain = SQLDatabaseChain(
     debug=False
 )
 
-last_sql_cmd = None
+last_db_output = None
 
 
 def run_db_chain(text: str):
-    global last_sql_cmd
+    global last_db_output
     output = db_chain({db_chain.input_keys[0]: text})
-    last_sql_cmd = output
+    last_db_output = output
     return output[db_chain.output_keys[0]]
 
 
@@ -45,12 +49,35 @@ tools = [
 ]
 
 llm = OpenAI(temperature=0)
+
+
 agent = initialize_agent(
     tools, llm, agent="zero-shot-react-description", verbose=True)
 
 
-r = agent.run(
-    "We had a bug yesterday. Are there any users that are stuck in training?")
+# save all stdout to a file buffer & also print to console
+with NamedTemporaryFile() as tmp_file:
+    stdout = sys.stdout
 
-print("Response:", r)
-print("Last SQL Command:", last_sql_cmd)
+    sys.stdout = open(tmp_file.name, "w")
+
+    r = agent.run(
+        "We had a bug yesterday. Are there any users that are stuck in training?")
+
+    sys.stdout = stdout
+    # print to console
+    with open(tmp_file.name, "r") as f:
+        debug_output = f.read()
+        print(debug_output)
+        # replace non-printable characters
+        debug_output = re.sub(r'[^\x00-\x7f]', r'', debug_output)
+        # replace color codes
+        debug_output = re.sub(r'\x1b\[[0-9;]*m', '', debug_output)
+
+# print(debug_output)
+print("DB output:", last_db_output)
+
+result = {
+    "debug_output": debug_output,
+    **last_db_output,
+}
