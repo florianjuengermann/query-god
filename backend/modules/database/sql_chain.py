@@ -83,7 +83,7 @@ class SQLDatabaseChain(Chain, BaseModel):
                 lang_output += f"\n[{result[0]}, ...]"
                 lang_output += f"\nAll results are stored in query_result.json"
                 with open("query_result.json", "w") as f:
-                    json.dump(result, f, cls=UUIDEncoder)
+                    json.dump(result, f, cls=UUIDEncoder, default=str)
 
         if self.verbose:
             print_text("\nSQLResult: ")

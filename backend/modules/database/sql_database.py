@@ -81,13 +81,16 @@ class SQLDatabase:
         with self._engine.connect() as connection:
             #cursor = connection.exec_driver_sql(command)
             try:
+                command = command.replace("%", "%%")  # python format
                 cursor = connection.execute(command)
                 if cursor.returns_rows:
                     result = cursor.fetchall()
+                    print(result)
                     # to json
                     json_result = [dict(row) for row in result]
                     return (None, json_result)
             except Exception as e:
                 print(e)
+                raise e
                 return (e.__str__(), [])
         return ("", [])

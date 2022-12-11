@@ -3,4 +3,5 @@ front-end/my-app/node_modules
 venv
 **/__pycache__/**
 **/query_result.json
+.DS_Store
 

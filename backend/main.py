@@ -8,6 +8,7 @@ import re
 
 from backend.modules.database.sql_chain import SQLDatabaseChain
 from backend.modules.database.sql_database import SQLDatabase
+from backend.modules.agents.ReActMemoryAgent import ReActMemoryAgent
 
 from tempfile import NamedTemporaryFile
 
@@ -30,12 +31,23 @@ History looks like this:
         "tableOutputSummary": "15 rows returned:\n[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]\nAll results are stored in query_result.json",
         "debug": "> Entering new ZeroShotAgent chain..."
     },
+    {
+      user: "human",
+      text: "Great can you rekick thier models?",
+    },
 ]
 
 """
 
 
-def run(history):
+def craft_high_level_prompt(history):
+    # have all the direct interactions in the history
+    text = "\n".join([
+        ""
+    ])
+
+
+def run(history, capture_output=True):
 
     # prase history
     prompt = history[-1]["text"]  # TODO
@@ -69,18 +81,20 @@ def run(history):
 
     llm = OpenAI(temperature=0)
 
-    agent = initialize_agent(
-        tools, llm, agent="zero-shot-react-description", verbose=True)
+    # agent = initialize_agent(
+    #    tools, llm, agent="zero-shot-react-description", verbose=True)
+    agent = ReActMemoryAgent.from_llm_and_tools(llm, tools, verbose=True)
 
     # save all stdout to a file buffer & also print to console
     with NamedTemporaryFile() as tmp_file:
-        stdout = sys.stdout
-
-        sys.stdout = open(tmp_file.name, "w")
+        if capture_output:
+            stdout = sys.stdout
+            sys.stdout = open(tmp_file.name, "w")
 
         r = agent.run(prompt)
 
-        sys.stdout = stdout
+        if capture_output:
+            sys.stdout = stdout
         # print to console
         with open(tmp_file.name, "r") as f:
             debug_output = f.read()
@@ -92,11 +106,6 @@ def run(history):
 
     # print(debug_output)
     print("DB output:", db_chain.custom_memory)
-
-    data = {
-        "debug_output": debug_output,
-        **db_chain.custom_memory,
-    }
 
     entry = {
         "user": "bot",
@@ -115,8 +124,41 @@ def run(history):
     return [*history, entry]
 
 
-if __name__ == "__main__":
-    run([{
+def toy_test():
+    history1 = [{
         "user": "user",
         "text": "We had a bug yesterday. Are there any users that are stuck in training?"
-    }])
+    }]
+    history2 = [
+        {
+            "user": "user",
+            "text": "We had a bug yesterday. Are there any users that are stuck in training?"
+        },
+        {
+            "user": "bot",
+            "text": "Yes, there are 15 users stuck in training.",
+            "debug": "\n\n> Entering new ReActMemoryAgent chain...\n...\n",
+            "code": {
+                "code": " SELECT users.email, models.status FROM users INNER JOIN models ON users.id = models.user_id WHERE models.status = 'training';",
+                "language": "sql",
+                "executable": False
+            },
+            "tableOutput": [
+                {
+                    "email": "205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com",
+                    "status": "training"
+                },
+                {
+                    "email": "db53a306-324a-432e-b95b-b3efbc8fdfd7@gmail.com",
+                    "status": "training"
+                },
+            ],
+            "tableOutputSummary": "15 rows returned:\n[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]\nAll results are stored in query_result.json"
+        },
+        {
+            "user": "user",
+            "text": "Great can you rekick their models?"
+        }
+    ]
+
+    run(history2, capture_output=False)
