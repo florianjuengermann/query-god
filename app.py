@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_cors import cross_origin
+from flask_sock import Sock
 import backend.main as main
 import subprocess
 from email import message
@@ -14,12 +15,16 @@ from email.utils import formataddr
 
 app = Flask(__name__)
 CORS(app)
+sock = Sock(app)
+
+socker_per_user = {}
 
 
 @app.route("/")
 @cross_origin()
 def index():
     return "Hello this is the new version!"
+
 
 @app.route("/rekick-model", methods=["POST"])
 @cross_origin()
@@ -30,12 +35,14 @@ def rekick_model():
     return jsonify(user_id)
 
 # send email
+
+
 @app.route("/send_email", methods=["POST"])
 @cross_origin()
 def send_email():
     # smtp.sendgrid.net
     """
-    
+
 25, 587	(for unencrypted/TLS connections)
 465	(for SSL connections)
     username:apikey
@@ -51,15 +58,14 @@ def send_email():
     sent_from = "assemblyhackathon@gmail.com"
     subject = 'Support request'
     body = message
-   
+
     msg = MIMEMultipart('alternative')
     msg['From'] = formataddr((str(Header(u'Alał', 'utf-8')), sent_from))
     msg['To'] = formataddr((str(Header(u'Alał', 'utf-8')), email))
-    
+
     # Record the MIME types of text/html.
     msg.attach(MIMEText(body, 'html'))
 
-    
     try:
         server = smtplib.SMTP_SSL('smtp.sendgrid.net', 465)
         server.ehlo()
@@ -69,20 +75,36 @@ def send_email():
 
         print('Email sent!')
     # catch error
-    except Exception as e:        
-        print(e,'Something went wrong...')
+    except Exception as e:
+        print(e, 'Something went wrong...')
     return "email sent"
-    
+
 
 @app.route("/api", methods=["POST"])
 @cross_origin()
 def api():
     data = request.get_json()
+    user = "0"
+    if user not in socker_per_user:
+        print("User not in connected to to websocket")
+    sock = socker_per_user.get(user, None)
+    sock.send("Starting...")
     print("data:", data)
     history = data["history"]
-    res = main.run(history)
+    res = main.run(history, socket=sock)
     return jsonify(res)
-# flask paraters python and file name 
+
+
+@sock.route('/debug-output')
+def debugOutput(ws):
+    print("User connected to websocket")
+    user = "0"
+    socker_per_user[user] = ws
+    data = ws.receive()
+    # TODO parse data {"user": <user_id>}
+
+# flask paraters python and file name
+
 
 @app.route("/run", methods=["POST"])
 @cross_origin()
@@ -96,10 +118,10 @@ def run():
     redirected_output = sys.stdout = StringIO()
     test = exec(python)
     print("hej")
-    sys.stdout = old_stdout    
+    sys.stdout = old_stdout
     print("hej")
     output = redirected_output.getvalue()
-    print(output,test, 'output')
+    print(output, test, 'output')
     return output
 
 

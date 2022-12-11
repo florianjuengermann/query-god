@@ -65,7 +65,7 @@ def get_resources(history):
     ]
 
 
-def run(history, capture_output=True):
+def run(history, socket=None, capture_output=True):
 
     # prase history
     prompt = history[-1]["text"]  # TODO
@@ -139,16 +139,35 @@ def run(history, capture_output=True):
         llm, tools, resources, history_text, verbose=True, debug=True)
 
     # save all stdout to a file buffer & also print to console
+
+    # create TextIOWrapper that sends to socket
+
     with NamedTemporaryFile() as tmp_file:
-        if capture_output:
-            stdout = sys.stdout
-            sys.stdout = open(tmp_file.name, "w")
+        if socket:
+            debug_output = ""
 
-        agent_output = agent.run(input)
+            with open(tmp_file.name, "w") as f:
+                class SocketWrapper:
+                    def write(self, s):
+                        x = colored_text_to_md(s)
+                        socket.send(x)
+                        f.write(x)
+                stdout = sys.stdout
+                sys.stdout = SocketWrapper()
+                agent_output = agent.run(input)
+                sys.stdout = stdout
 
-        if capture_output:
-            sys.stdout = stdout
-        # print to console
+        else:
+
+            if capture_output:
+                stdout = sys.stdout
+                sys.stdout = open(tmp_file.name, "w")
+
+            agent_output = agent.run(input)
+
+            if capture_output:
+                sys.stdout = stdout
+            # print to console
         with open(tmp_file.name, "r") as f:
             debug_output = f.read()
             print(debug_output)

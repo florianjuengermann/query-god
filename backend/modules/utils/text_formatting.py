@@ -30,7 +30,7 @@ def colored_text_to_md(text: str):
 
     # with open("test.txt", "w") as f:
     #    f.write(text)
-
+    return re.sub(r'\x1b\[[0-9;]*m', '', text)
     text = text.replace("\n", "\\n")
     for color in COLOR_TO_STYLE:
         style = COLOR_TO_STYLE[color]
