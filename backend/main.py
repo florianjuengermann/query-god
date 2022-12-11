@@ -76,7 +76,7 @@ def run(history, capture_output=True):
     apis = [
         API(
             type="REST POST",
-            signature="send_email(email, message)",
+            signature="send_email(user_id, message)",
             description="send message to an email.",
         ),
         API(
