@@ -103,12 +103,12 @@ function ChatBubble({ messages, debugMode }) {
                     {console.log(
                       message.debug
                         // replace newlines so it works for markdown
-                        .replace(/>/gm, "####")
+                        //.replace(/>/gm, "####")
                         .replace(/\n/gm, "  &nbsp; &nbsp; \n  &nbsp; ")
                     )}
                     <ReactMarkdown
                       children={message.debug
-                        .replace(/>/gm, "####")
+                        //.replace(/>/gm, "####")
                         .replace(/^\s+/gm, "\n")
                         .replace(/\. /gm, ".\n")
                         .replace(/\n/gm, "   \n")}

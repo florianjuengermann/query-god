@@ -13,6 +13,7 @@ from backend.modules.agents.ReActMemoryAgent import ReActMemoryAgent
 from backend.modules.api.api_chain import APIChain
 from backend.modules.api.api import API
 from backend.modules.resources.resource import Resource
+from backend.modules.utils.text_formatting import colored_text_to_md
 
 from tempfile import NamedTemporaryFile
 
@@ -153,7 +154,8 @@ def run(history, capture_output=True):
             # replace non-printable characters
             debug_output = re.sub(r'[^\x00-\x7f]', r'', debug_output)
             # replace color codes
-            debug_output = re.sub(r'\x1b\[[0-9;]*m', '', debug_output)
+            #debug_output = re.sub(r'\x1b\[[0-9;]*m', '', debug_output)
+            debug_output = colored_text_to_md(debug_output)
 
     entry = {
         "user": "bot",
