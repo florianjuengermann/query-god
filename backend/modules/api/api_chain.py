@@ -74,5 +74,5 @@ class APIChain(Chain, BaseModel):
             print_text(python_code, color="green")
 
         # error, result = "", "Executed successfully" # TODO!
-
+        self.custom_memory["python_code"] = python_code
         return {self.output_key: python_code}

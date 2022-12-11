@@ -141,7 +141,7 @@ def run(history, capture_output=True):
             stdout = sys.stdout
             sys.stdout = open(tmp_file.name, "w")
 
-        r = agent.run(input)
+        agent_output = agent.run(input)
 
         if capture_output:
             sys.stdout = stdout
@@ -159,10 +159,16 @@ def run(history, capture_output=True):
 
     entry = {
         "user": "bot",
-        "text": r,
+        "text": agent_output,
         "debug": debug_output,
     }
-    if db_chain.custom_memory:
+    if api_chain.custom_memory:
+        entry["code"] = {
+            "code": api_chain.custom_memory["python_code"],
+            "language": "python",
+            "executable": True,
+        }
+    elif db_chain.custom_memory:
         entry["code"] = {
             "code": db_chain.custom_memory["sql_cmd"],
             "language": "sql",
