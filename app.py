@@ -21,7 +21,7 @@ CORS(app)
 def index():
     return "Hello this is the new version!"
 
-@app.route("/api", methods=["POST"])
+@app.route("/rekick-model", methods=["POST"])
 @cross_origin()
 def rekick_model():
     content = request.get_json()
