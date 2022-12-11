@@ -177,7 +177,7 @@ def run(history, capture_output=True):
 
     print("\n\n")
     print("New entry:")
-    print(json.dumps(entry, indent=2))
+    print(json.dumps(entry, indent=2, default=str))
 
     return [*history, entry]
 

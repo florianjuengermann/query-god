@@ -65,7 +65,14 @@ class SQLDatabase:
         for table_name in self._get_table_names():
             columns = []
             for column in self._inspector.get_columns(table_name):
-                columns.append(f"{column['name']} ({str(column['type'])})")
+                # TODO find unique/example values and input them here
+                # for now it's only for the status column
+                if column["name"] == "status":
+                    columns.append(
+                        f"{column['name']} ('success', 'training', 'failure')")
+                else:
+                    columns.append(f"{column['name']} ({str(column['type'])})")
+                # ouput some unique values
             column_str = ", ".join(columns)
             table_str = template.format(
                 table_name=table_name, columns=column_str)
