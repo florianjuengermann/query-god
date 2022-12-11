@@ -72,18 +72,23 @@ def run(history, capture_output=True):
             func=db_chain.run,
             description="useful for when you need to answer questions about data in your database"
         ),
-        Tool(
-            name="Calculator",
-            func=llm_math_chain.run,
-            description="useful for when you need to answer questions about math"
-        )
+        # Tool(
+        #     name="Calculator",
+        #     func=llm_math_chain.run,
+        #     description="useful for when you need to answer questions about math"
+        # )
     ]
 
     llm = OpenAI(temperature=0)
 
+    input = prompt
+    history = ""
+    resources = ""
+
     # agent = initialize_agent(
     #    tools, llm, agent="zero-shot-react-description", verbose=True)
-    agent = ReActMemoryAgent.from_llm_and_tools(llm, tools, verbose=True)
+    agent = ReActMemoryAgent.from_llm_tools_resources_history(
+        llm, tools, resources, history, verbose=True)
 
     # save all stdout to a file buffer & also print to console
     with NamedTemporaryFile() as tmp_file:
@@ -91,7 +96,7 @@ def run(history, capture_output=True):
             stdout = sys.stdout
             sys.stdout = open(tmp_file.name, "w")
 
-        r = agent.run(prompt)
+        r = agent.run(input)
 
         if capture_output:
             sys.stdout = stdout
@@ -161,4 +166,4 @@ def toy_test():
         }
     ]
 
-    run(history2, capture_output=False)
+    run(history1, capture_output=False)

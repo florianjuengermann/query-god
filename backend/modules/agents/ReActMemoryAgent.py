@@ -4,7 +4,8 @@ from __future__ import annotations
 from typing import Any, Callable, List, NamedTuple, Optional, Tuple
 
 from langchain.agents.agent import Agent
-from langchain.agents.mrkl.prompt import FORMAT_INSTRUCTIONS, PREFIX, SUFFIX
+from backend.modules.agents.prompt import FORMAT_INSTRUCTIONS, PREFIX, SUFFIX, HISTORY, RESOURCES
+from backend.modules.resources.resource import Resource
 from langchain.agents.tools import Tool
 from langchain.llms.base import LLM
 from langchain.chains.llm import LLMChain
@@ -74,10 +75,6 @@ class ZeroShotAgent(Agent):
         Args:
             tools: List of tools the agent will have access to, used to format the
                 prompt.
-            prefix: String to put before the list of tools.
-            suffix: String to put after the list of tools.
-            input_variables: List of input variables the final prompt will expect.
-
         Returns:
             A PromptTemplate with the template assembled from the pieces here.
         """
@@ -110,35 +107,41 @@ class ReActMemoryAgent(ZeroShotAgent):
     def create_prompt(
         cls,
         tools: List[Tool],
-        prefix: str = PREFIX,
-        suffix: str = SUFFIX,
-        input_variables: Optional[List[str]] = None,
+        resources: List[Resource],
+        history: str,
     ) -> PromptTemplate:
-        """Create prompt in the style of the zero shot agent.
-
-        Args:
-            tools: List of tools the agent will have access to, used to format the
-                prompt.
-            prefix: String to put before the list of tools.
-            suffix: String to put after the list of tools.
-            input_variables: List of input variables the final prompt will expect.
-
-        Returns:
-            A PromptTemplate with the template assembled from the pieces here.
-        """
         tool_strings = "\n".join(
             [f"{tool.name}: {tool.description}" for tool in tools])
         tool_names = ", ".join([tool.name for tool in tools])
+
+        resources_strings = "\n".join(
+            [resource.description for resource in resources])
+        resources_string = RESOURCES.format(resources=resources_strings)
+
+        history = HISTORY.format(history=history)
+
         format_instructions = FORMAT_INSTRUCTIONS.format(tool_names=tool_names)
         template = "\n\n".join(
-            [prefix, tool_strings, format_instructions, suffix])
-        if input_variables is None:
-            input_variables = ["input"]
+            # [PREFIX, tool_strings, RESOURCES, format_instructions, HISTORY, SUFFIX])
+            [PREFIX, tool_strings, resources_string, format_instructions, history, SUFFIX])
+        input_variables = ["input"]  # , "resources", "history"]
         return PromptTemplate(template=template, input_variables=input_variables)
 
     @classmethod
-    def from_llm_and_tools(cls, llm: LLM, tools: List[Tool], **kwargs: Any) -> Agent:
+    def from_llm_tools_resources_history(
+        cls,
+        llm: LLM,
+        tools: List[Tool],
+        resources: List[Resource],
+        history: str,
+        **kwargs: Any
+    ) -> Agent:
         """Construct an agent from an LLM and tools."""
         cls._validate_tools(tools)
-        llm_chain = LLMChain(llm=llm, prompt=cls.create_prompt(tools))
+        llm_chain = LLMChain(
+            llm=llm, prompt=cls.create_prompt(tools, resources, history))
         return ReActMemoryAgent(llm_chain=llm_chain, tools=tools, **kwargs)
+
+    # def _call(self, inputs: dict[str, str]) -> dict[str, str]:
+
+    #     super()._call(inputs)
