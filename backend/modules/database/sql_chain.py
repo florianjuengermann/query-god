@@ -97,6 +97,13 @@ class SQLDatabaseChain(Chain, BaseModel):
         self.custom_memory = {
             "query_result": result,
             "sql_cmd": sql_cmd,
-            "query_result_summary": lang_output,
+            "query_result_summary": {
+                "type": "json file",
+                "name": "query_result.json",
+                "outline": f"{len(result)} rows",
+                "example": f"[{result[0]}, ...]",
+                "source": sql_cmd,
+                "text": lang_output,
+            },
         }
         return {self.output_key: final_result}
