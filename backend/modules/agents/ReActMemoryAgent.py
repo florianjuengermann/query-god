@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Any, Callable, List, NamedTuple, Optional, Tuple
 
 from langchain.agents.agent import Agent
+from langchain.input import print_text
 from backend.modules.agents.prompt import FORMAT_INSTRUCTIONS, PREFIX, SUFFIX, HISTORY, RESOURCES
 from backend.modules.resources.resource import Resource
 from langchain.agents.tools import Tool
@@ -109,6 +110,7 @@ class ReActMemoryAgent(ZeroShotAgent):
         tools: List[Tool],
         resources: List[Resource],
         history: str,
+        debug: bool = False,
     ) -> PromptTemplate:
         tool_strings = "\n".join(
             [f"{tool.name}: {tool.description}" for tool in tools])
@@ -122,26 +124,25 @@ class ReActMemoryAgent(ZeroShotAgent):
 
         format_instructions = FORMAT_INSTRUCTIONS.format(tool_names=tool_names)
         template = "\n\n".join(
-            # [PREFIX, tool_strings, RESOURCES, format_instructions, HISTORY, SUFFIX])
-            [PREFIX, tool_strings, resources_string, format_instructions, history, SUFFIX])
-        input_variables = ["input"]  # , "resources", "history"]
+            [PREFIX, tool_strings, format_instructions, history, resources_string, SUFFIX])
+        if debug:
+            print_text(f"{cls.__name__} prompt:\n")
+            print_text(template, color="blue")
+        input_variables = ["input"]
         return PromptTemplate(template=template, input_variables=input_variables)
 
-    @classmethod
+    @ classmethod
     def from_llm_tools_resources_history(
         cls,
         llm: LLM,
         tools: List[Tool],
         resources: List[Resource],
         history: str,
+        debug: bool = False,
         **kwargs: Any
     ) -> Agent:
         """Construct an agent from an LLM and tools."""
         cls._validate_tools(tools)
         llm_chain = LLMChain(
-            llm=llm, prompt=cls.create_prompt(tools, resources, history))
+            llm=llm, prompt=cls.create_prompt(tools, resources, history, debug))
         return ReActMemoryAgent(llm_chain=llm_chain, tools=tools, **kwargs)
-
-    # def _call(self, inputs: dict[str, str]) -> dict[str, str]:
-
-    #     super()._call(inputs)

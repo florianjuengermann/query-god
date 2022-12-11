@@ -9,6 +9,7 @@ import re
 from backend.modules.database.sql_chain import SQLDatabaseChain
 from backend.modules.database.sql_database import SQLDatabase
 from backend.modules.agents.ReActMemoryAgent import ReActMemoryAgent
+from backend.modules.api.api_chain import APIChain
 
 from tempfile import NamedTemporaryFile
 
@@ -51,6 +52,12 @@ def run(history, capture_output=True):
 
     # prase history
     prompt = history[-1]["text"]  # TODO
+
+    input = prompt
+    history = ""
+    resources = []
+    apis = []
+
     db_connection_string = os.environ.get("DB_CONNECTION_STRING")
     print("db_connection_string set:", db_connection_string is not None)
     db = SQLDatabase.from_uri(db_connection_string)
@@ -63,6 +70,12 @@ def run(history, capture_output=True):
         debug=False
     )
 
+    api_chain = APIChain(
+        llm=OpenAI(temperature=0),
+        apis=apis,
+        resources=resources,
+    )
+
     # Load the tool configs that are needed.
     llm = OpenAI(temperature=0)
     llm_math_chain = LLMMathChain(llm=llm, verbose=True)
@@ -72,23 +85,24 @@ def run(history, capture_output=True):
             func=db_chain.run,
             description="useful for when you need to answer questions about data in your database"
         ),
-        # Tool(
-        #     name="Calculator",
-        #     func=llm_math_chain.run,
-        #     description="useful for when you need to answer questions about math"
-        # )
+        Tool(
+            name="Calculator",
+            func=llm_math_chain.run,
+            description="useful for when you need to answer questions about math"
+        ),
+        Tool(
+            name="API",
+            func=api_chain.run,
+            description="useful for when you need to perform actions on data"
+        )
     ]
 
     llm = OpenAI(temperature=0)
 
-    input = prompt
-    history = ""
-    resources = ""
-
     # agent = initialize_agent(
     #    tools, llm, agent="zero-shot-react-description", verbose=True)
     agent = ReActMemoryAgent.from_llm_tools_resources_history(
-        llm, tools, resources, history, verbose=True)
+        llm, tools, resources, history, verbose=True, debug=True)
 
     # save all stdout to a file buffer & also print to console
     with NamedTemporaryFile() as tmp_file:
@@ -166,4 +180,4 @@ def toy_test():
         }
     ]
 
-    run(history1, capture_output=False)
+    run(history2, capture_output=False)
