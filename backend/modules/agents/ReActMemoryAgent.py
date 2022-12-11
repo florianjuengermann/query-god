@@ -12,6 +12,8 @@ from langchain.llms.base import LLM
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
+from backend.modules.resources.resource import format_resources
+
 FINAL_ANSWER_ACTION = "Final Answer: "
 
 
@@ -116,13 +118,17 @@ class ReActMemoryAgent(ZeroShotAgent):
             [f"{tool.name}: {tool.description}" for tool in tools])
         tool_names = ", ".join([tool.name for tool in tools])
 
-        resources_strings = "\n".join(
-            [resource.description for resource in resources])
-        resources_string = RESOURCES.format(resources=resources_strings)
+        def process(text: str):
+            return text.replace("{", "{{").replace("}", "}}")
 
-        history = HISTORY.format(history=history)
+        resources_strings = format_resources(resources)
+        resources_string = RESOURCES.format(
+            resources=process(resources_strings))
 
-        format_instructions = FORMAT_INSTRUCTIONS.format(tool_names=tool_names)
+        history = HISTORY.format(history=process(history))
+
+        format_instructions = FORMAT_INSTRUCTIONS.format(
+            tool_names=process(tool_names))
         template = "\n\n".join(
             [PREFIX, tool_strings, format_instructions, history, resources_string, SUFFIX])
         if debug:

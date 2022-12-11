@@ -10,6 +10,8 @@ from backend.modules.database.sql_chain import SQLDatabaseChain
 from backend.modules.database.sql_database import SQLDatabase
 from backend.modules.agents.ReActMemoryAgent import ReActMemoryAgent
 from backend.modules.api.api_chain import APIChain
+from backend.modules.api.api import API
+from backend.modules.resources.resource import Resource
 
 from tempfile import NamedTemporaryFile
 
@@ -33,7 +35,7 @@ History looks like this:
         "debug": "> Entering new ZeroShotAgent chain..."
     },
     {
-      user: "human",
+      user: "user",
       text: "Great can you rekick thier models?",
     },
 ]
@@ -41,11 +43,24 @@ History looks like this:
 """
 
 
-def craft_high_level_prompt(history):
-    # have all the direct interactions in the history
-    text = "\n".join([
-        ""
+def get_chat_history(history):
+    return "\n".join([
+        ("AI: " if entry["user"] == "bot" else "USER: ")
+        + entry["text"]
+        for entry in history
     ])
+
+
+def get_resources(history):
+    return [
+        Resource(
+            type=entry["tableOutputSummary"]["type"],
+            name=entry["tableOutputSummary"]["name"],
+            description=f'{entry["tableOutputSummary"]["outline"]} like {entry["tableOutputSummary"]["example"]}. Source: {entry["tableOutputSummary"]["source"]}',
+        )
+        for entry in history
+        if "tableOutputSummary" in entry
+    ]
 
 
 def run(history, capture_output=True):
@@ -54,9 +69,25 @@ def run(history, capture_output=True):
     prompt = history[-1]["text"]  # TODO
 
     input = prompt
-    history = ""
-    resources = []
-    apis = []
+    history_text = get_chat_history(history)
+    resources = get_resources(history)
+    apis = [
+        API(
+            type="REST POST",
+            signature="send_email(email, message)",
+            description="send message to an email.",
+        ),
+        API(
+            type="REST POST",
+            signature="rekick_model(model_id)",
+            description="restart a training for a model",
+        ),
+        API(
+            type="REST POST",
+            signature="reimburse_user(user_id, credits)",
+            description="reimburse user id with credits",
+        ),
+    ]
 
     db_connection_string = os.environ.get("DB_CONNECTION_STRING")
     print("db_connection_string set:", db_connection_string is not None)
@@ -102,7 +133,7 @@ def run(history, capture_output=True):
     # agent = initialize_agent(
     #    tools, llm, agent="zero-shot-react-description", verbose=True)
     agent = ReActMemoryAgent.from_llm_tools_resources_history(
-        llm, tools, resources, history, verbose=True, debug=True)
+        llm, tools, resources, history_text, verbose=True, debug=True)
 
     # save all stdout to a file buffer & also print to console
     with NamedTemporaryFile() as tmp_file:
@@ -172,7 +203,15 @@ def toy_test():
                     "status": "training"
                 },
             ],
-            "tableOutputSummary": "15 rows returned:\n[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]\nAll results are stored in query_result.json"
+            # "tableOutputSummary": "15 rows returned:\n[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]\nAll results are stored in query_result.json"
+            "tableOutputSummary": {
+                "type": "json file",
+                "name": "query_result.json",
+                "outline": "15 rows",
+                "example": "[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]",
+                "source": "SELECT users.email, models.status FROM users INNER JOIN models ON users.id = models.user_id WHERE models.status = 'training';",
+                "text": "15 rows returned:\n[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]\nAll results are stored in query_result.json",
+            }
         },
         {
             "user": "user",

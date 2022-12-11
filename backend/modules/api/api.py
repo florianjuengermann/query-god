@@ -6,6 +6,7 @@ class API(NamedTuple):
 
     type: str
     #func: Callable[[str], str]
+    signature: str
     description: Optional[str] = None
 
 
