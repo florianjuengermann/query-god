@@ -14,7 +14,7 @@ def format_resources(resources: List[Resource]) -> str:
     """Format the resources into a string."""
     return "\n".join(
         [
-            f"{r.type}: file name '{r.name}': {r.description}"
+            f"{r.type}: '{r.name}' {r.description}"
             for r in resources
             if r.description
         ]

@@ -58,7 +58,7 @@ def get_resources(history):
         Resource(
             type=entry["tableOutputSummary"]["type"],
             name=entry["tableOutputSummary"]["name"],
-            description=f'{entry["tableOutputSummary"]["outline"]} like {entry["tableOutputSummary"]["example"]}. Source: {entry["tableOutputSummary"]["source"]}',
+            description=f'Containing {entry["tableOutputSummary"]["outline"]} of the result of this query: "{entry["tableOutputSummary"]["source"]}". The data looks like: {entry["tableOutputSummary"]["example"]}',
         )
         for entry in history
         if "tableOutputSummary" in entry
@@ -191,10 +191,7 @@ def toy_test():
         "text": "We had a bug yesterday, can you tell me if there are any models stuck at training?"
     }]
     history2 = [
-        {
-            "user": "user",
-            "text": "We had a bug yesterday, can you tell me if there are any models stuck at training?"
-        },
+        *history1,
         {
             "user": "bot",
             "text": "There are 15 models that are stuck at training.",
@@ -230,4 +227,22 @@ def toy_test():
         }
     ]
 
-    run(history2, capture_output=False)
+    history3 = [
+        *history2,
+        {
+            "user": "bot",
+            "text": "The models have been rekicked.",
+            "debug": "",
+            "code": {
+                "code": "\n\nimport requests\nimport json\n\n# Load the json file\nwith open('query_result.json') as json_file:\n    data = json.load(json_file)\n\n# Set the API endpoint\nurl = os.environ['URL']\n\n# Set the bearer token\nheaders = {'Authorization': 'Bearer ' + os.environ['BEARER_TOKEN']}\n\n# Iterate through the json file\nfor row in data:\n    # Get the model ID\n    model_id = row['id']\n    # Send the POST request\n    response = requests.post(url + '/rekick_model', headers=headers, data={'model_id': model_id})\n",
+                "language": "python",
+                "executable": True
+            }
+        },
+        {
+            "user": "user",
+            "text": "Thank you, can you send the affected users an email apologizing for the delay?",
+        }
+    ]
+
+    run(history3, capture_output=False)
