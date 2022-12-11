@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { CopyBlock, dracula } from "react-code-blocks";
 import styled from "@emotion/styled";
@@ -159,6 +159,9 @@ const DebuggerBox = ({ header, content, input }) => {
 function ChatBubble({ messages, debugMode }) {
   const [executingCode, setExecutingCode] = useState(false);
   const [responseFromCode, setResponseFromCode] = useState(null);
+  useEffect(() => {
+    setResponseFromCode(null);
+  }, [messages]);
   const columns = [
     {
       title: "id",
