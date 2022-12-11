@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import ChatBubble from "./ChatBubble";
 import ChatInput from "./ChatInput";
+import { ApiTwoTone } from "@ant-design/icons";
+import { DatabaseTwoTone } from "@ant-design/icons";
 import axios from "axios";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 // emotion import
@@ -22,6 +24,40 @@ const SettingsWrapper = styled.div`
 `;
 
 const DOMAIN = "http://127.0.0.1:5000";
+const IntroPopup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 700px;
+  height: 300px;
+
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+`;
+
+const TopHeaderIntro = styled.div`
+  font-size: 40px;
+  font-weight: 600;
+`;
+
+const WrapperIntro = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  padding-top: 0px;
+  height: 100%;
+  justify-content: space-between;
+`;
+
+const ImageWrapper = styled.div``;
+
+const ImageDescription = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 function ChatTree() {
   const [debugMode, setDebugMode] = useState(false);
@@ -73,6 +109,7 @@ function ChatTree() {
       }
       //sendJsonMessage({user: "0"});
 
+      console.log(messages);
       const response = await axios.post(
         `${DOMAIN}/api`,
         {
@@ -144,6 +181,24 @@ function ChatTree() {
           onChange={(checked) => setDebugMode(checked)}
         />
       </SettingsWrapper>
+      {messages.length === 0 && (
+        <IntroPopup>
+          {" "}
+          <TopHeaderIntro>Datable</TopHeaderIntro>
+          <WrapperIntro>
+            <ImageWrapper>
+              <DatabaseTwoTone
+                style={{ fontSize: "100px", marginBottom: "20px" }}
+              />
+              <ImageDescription>Ask questions to any database</ImageDescription>
+            </ImageWrapper>
+            <ImageWrapper>
+              <ApiTwoTone style={{ fontSize: "100px", marginBottom: "20px" }} />
+              <ImageDescription>Execute tasks on any API</ImageDescription>
+            </ImageWrapper>
+          </WrapperIntro>
+        </IntroPopup>
+      )}
       <ChatBubble debugMode={debugMode} messages={messages} />
       <BottomDiv ref={messagesEndRef} />
       <ChatInput onAsk={onAsk} waitingOnAI={waitingOnAI} />

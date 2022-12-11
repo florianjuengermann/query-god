@@ -83,6 +83,7 @@ def send_email():
 @app.route("/api", methods=["POST"])
 @cross_origin()
 def api():
+    print("ASDASD")
     data = request.get_json()
     user = "0"
     if user not in socker_per_user:

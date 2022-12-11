@@ -8,6 +8,7 @@ import alfred from "./alfred.JPG";
 import hal from "./hal.jpeg";
 import { Button } from "antd";
 import ReactMarkdown from "react-markdown";
+import axios from "axios";
 
 const ChatBubbleWrapper = styled.div`
   // if user is human check with props
@@ -53,7 +54,12 @@ const TextCentered = styled.div`
 const DebuggerWrapper = styled.div`
   background-color: #fff;
   border-radius 10px !important;
-  padding: 20px;
+  padding: 20px;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 `;
 
 const ButtonWrapper = styled.div`
@@ -62,8 +68,97 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
 `;
 
+const DebuggerBoxWrapper = styled.div`
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  width: 500px;
+  padding: 20px;
+  border-radius: 6px;
+  background: #e2e2e2;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  // border
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+`;
+
+const DebuggerMegaWrapper = styled.div`
+  text-align: center;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // translate to center
+  p {
+    width: 300px;
+  }
+`;
+const VerticalLine = styled.div`
+  width: 1px;
+  height: 30px;
+  background-color: black;
+`;
+
+const DebuggerBox = ({ header, content, input }) => {
+  if (header.includes("Finished SQLDatabaseChain chain")) {
+    header = "SQL finished";
+  }
+  if (header.includes("Finished ZeroShotAgent chain")) {
+    header = "Zero Shot finished";
+  }
+
+  if (header.includes("Entering new SQLDatabaseChain chain")) {
+    header = "SQL started";
+  }
+
+  if (header.includes("Entering new ZeroShotAgent chain")) {
+    header = "Zero Shot started";
+  }
+
+  return (
+    <DebuggerMegaWrapper>
+      <h3>{header}</h3>
+      <DebuggerBoxWrapper>
+        {header === "SQL started" && (
+          <CopyBlock
+            language={"SQL"}
+            text={content.replaceAll("..", "")}
+            showLineNumbers={false}
+            theme={dracula}
+            wrapLines={true}
+            codeBlock
+          />
+        )}
+        {header !== "SQL started" && (
+          <ReactMarkdown
+            style={{ textAlign: "left" }}
+            children={content
+              .replace(/>/gm, "####")
+              .replaceAll("..", "")
+              .replace(/^\s+/gm, "\n")
+              .replace(/\. /gm, ".\n")
+              .replace(/\n/gm, "   \n")}
+          />
+        )}
+      </DebuggerBoxWrapper>
+      {input.replaceAll(" ", "") && (
+        <InputWrapper>
+          <VerticalLine />
+          <p>{input}</p>
+          <VerticalLine />
+        </InputWrapper>
+      )}
+    </DebuggerMegaWrapper>
+  );
+};
+
 // add props messages
 function ChatBubble({ messages, debugMode }) {
+  const [executingCode, setExecutingCode] = useState(false);
+  const [responseFromCode, setResponseFromCode] = useState(null);
   const columns = [
     {
       title: "id",
@@ -86,6 +181,36 @@ function ChatBubble({ messages, debugMode }) {
       key: "created_at",
     },
   ];
+
+  const fetchExecuteCodeResponse = async (code) => {
+    setExecutingCode(true);
+    try {
+      setExecutingCode(true);
+      const response = await axios.post(
+        "http://127.0.0.1:5000/run",
+        {
+          code,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      console.log(response);
+
+      setResponseFromCode(response.data);
+      // setExecutingCode(false);
+      return response.data;
+    } catch (error) {
+      setTimeout(() => {
+        setExecutingCode(false);
+        setResponseFromCode("Success");
+      }, 1000);
+      console.log(error, "error from AI response");
+    }
+  };
   return (
     <div className="ChatBubble">
       {messages.map((message, index) => {
@@ -100,19 +225,43 @@ function ChatBubble({ messages, debugMode }) {
                 <TextBlock style={{ textAlign: "left" }} className="debug">
                   <DebuggerWrapper style={{ borderRadius: "10px" }}>
                     <h3>LLM Debugging 🤖</h3>
-                    {console.log(
-                      message.debug
-                        // replace newlines so it works for markdown
-                        //.replace(/>/gm, "####")
-                        .replace(/\n/gm, "  &nbsp; &nbsp; \n  &nbsp; ")
-                    )}
-                    <ReactMarkdown
+
+                    {message.debug.split(">").map((item, index) => {
+                      console.log(
+                        item,
+                        item.split("."),
+                        item.split(/\r?\n/),
+                        item.split(/\r?\n/)[item.split(/\r?\n/).length - 2],
+                        "item"
+                      );
+                      const lines = item.replaceAll("*", "").split(/\r?\n/);
+                      // remove empty lines
+                      const filteredLines = lines.filter(
+                        (line) => line.length > 0
+                      );
+                      if (
+                        item.length > 20 &&
+                        !item
+                          .split(".")[0]
+                          .includes("Finished ReActMemoryAgent chain")
+                      ) {
+                        return (
+                          <DebuggerBox
+                            key={index}
+                            header={item.split(".")[0]}
+                            content={item.split(".").slice(1).join(".")}
+                            input={filteredLines[filteredLines.length - 1]}
+                          />
+                        );
+                      }
+                    })}
+                    {/* <ReactMarkdown
                       children={message.debug
                         //.replace(/>/gm, "####")
                         .replace(/^\s+/gm, "\n")
                         .replace(/\. /gm, ".\n")
                         .replace(/\n/gm, "   \n")}
-                    />
+                    /> */}
                   </DebuggerWrapper>
                 </TextBlock>
               )}
@@ -143,7 +292,32 @@ function ChatBubble({ messages, debugMode }) {
                     />
                     {message.code.executable && (
                       <ButtonWrapper>
-                        <Button type="primary"> Run Workflow </Button>
+                        <Button
+                          type="primary"
+                          onClick={() => {
+                            console.log("apa");
+                            setExecutingCode(true);
+                            fetchExecuteCodeResponse(message.code.code);
+                          }}
+                          disabled={responseFromCode}
+                          loading={executingCode}
+                        >
+                          {" "}
+                          Run Workflow{" "}
+                        </Button>
+                        {responseFromCode && (
+                          <div
+                            style={{
+                              marginLeft: "20px",
+                              display: "flex",
+                              alignItems: "center",
+                              color: "#52C51A",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {responseFromCode}
+                          </div>
+                        )}
                       </ButtonWrapper>
                     )}
                   </CodeWrapper>
@@ -152,6 +326,7 @@ function ChatBubble({ messages, debugMode }) {
               {message.tableOutput && (
                 <TextBlock className="tableOutput">
                   <Table
+                    scroll={{ x: 100 }}
                     columns={Object.keys(message.tableOutput[0]).map((key) => {
                       return {
                         title: key,
