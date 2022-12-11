@@ -5,6 +5,7 @@ from langchain.agents import initialize_agent, Tool
 import os
 import sys
 import re
+import json
 
 from backend.modules.database.sql_chain import SQLDatabaseChain
 from backend.modules.database.sql_database import SQLDatabase
@@ -154,9 +155,6 @@ def run(history, capture_output=True):
             # replace color codes
             debug_output = re.sub(r'\x1b\[[0-9;]*m', '', debug_output)
 
-    # print(debug_output)
-    print("DB output:", db_chain.custom_memory)
-
     entry = {
         "user": "bot",
         "text": agent_output,
@@ -176,6 +174,10 @@ def run(history, capture_output=True):
         }
         entry["tableOutput"] = db_chain.custom_memory["query_result"]
         entry["tableOutputSummary"] = db_chain.custom_memory["query_result_summary"]
+
+    print("\n\n")
+    print("New entry:")
+    print(json.dumps(entry, indent=2))
 
     return [*history, entry]
 
