@@ -4,7 +4,7 @@ import ChatInput from "./ChatInput";
 import { ApiTwoTone } from "@ant-design/icons";
 import { DatabaseTwoTone } from "@ant-design/icons";
 import axios from "axios";
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket, { ReadyState } from "react-use-websocket";
 // emotion import
 import { css } from "@emotion/react";
 // styled
@@ -75,28 +75,24 @@ function ChatTree() {
     scrollToBottom();
   }, [messages]);
 
-  const wsUrl = `${DOMAIN}/debug-output`.replace(/^http/, 'ws');
-  const { sendJsonMessage, lastMessage, readyState } = useWebSocket(
-    wsUrl,{
-      onOpen: (event) => console.log("websocket opened"),
-      onClose: (event) => console.log("websocket closed"),
+  const wsUrl = `${DOMAIN}/debug-output`.replace(/^http/, "ws");
+  const { sendJsonMessage, lastMessage, readyState } = useWebSocket(wsUrl, {
+    onOpen: (event) => console.log("websocket opened"),
+    onClose: (event) => console.log("websocket closed"),
   });
 
   useEffect(() => {
-    if (!lastMessage || lastMessage === "")
-      return;
+    if (!lastMessage || lastMessage === "") return;
     console.log("last message:", lastMessage.data);
     const botMsgs = messages.filter((msg) => msg.user === "bot");
-    if(botMsgs.length === 0)
-      return;
-    const lastBotMsg = {...botMsgs[botMsgs.length - 1]};
+    if (botMsgs.length === 0) return;
+    const lastBotMsg = { ...botMsgs[botMsgs.length - 1] };
     // replace last bot message with new message
     lastBotMsg.debug += lastMessage.data;
     //console.log("All debug:", lastBotMsg.debug);
     // replace message in messages array
     const newMessages = messages.map((msg) => {
-      if(msg.user === "bot" && msg.text === lastBotMsg.text)
-        return lastBotMsg;
+      if (msg.user === "bot" && msg.text === lastBotMsg.text) return lastBotMsg;
       return msg;
     });
     setMessages(newMessages);
@@ -104,7 +100,7 @@ function ChatTree() {
 
   const fetchAIResponse = async (messages) => {
     try {
-      if(!readyState === ReadyState.OPEN) {
+      if (!readyState === ReadyState.OPEN) {
         console.error("Websocket not open");
       }
       //sendJsonMessage({user: "0"});
@@ -131,7 +127,6 @@ function ChatTree() {
     }
   };
 
-
   const onAsk = (value) => {
     fetchAIResponse([...messages, { user: "human", text: value }]);
     setMessages([
@@ -143,7 +138,7 @@ function ChatTree() {
       {
         user: "bot",
         debug: "",
-      }
+      },
     ]);
     setWaitingOnAI(true);
     // send request to AI
@@ -184,7 +179,7 @@ function ChatTree() {
       {messages.length === 0 && (
         <IntroPopup>
           {" "}
-          <TopHeaderIntro>Datable</TopHeaderIntro>
+          <TopHeaderIntro>QueryGod</TopHeaderIntro>
           <WrapperIntro>
             <ImageWrapper>
               <DatabaseTwoTone
