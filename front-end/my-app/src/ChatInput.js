@@ -23,6 +23,7 @@ const InnerWrapper = styled.div`
   margin: 0 auto;
 `;
 function ChatInput({ onAsk, waitingOnAI }) {
+  const [value, setValue] = useState("");
   return (
     <ChatInputWrapper>
       <InnerWrapper
@@ -38,7 +39,12 @@ function ChatInput({ onAsk, waitingOnAI }) {
           enterButton="Ask"
           size="large"
           loading={waitingOnAI}
-          onSearch={onAsk}
+          onSearch={() => {
+            onAsk(value);
+            setValue("");
+          }}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
       </InnerWrapper>
     </ChatInputWrapper>

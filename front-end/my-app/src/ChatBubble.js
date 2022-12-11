@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import alfred from "./alfred.JPG";
+import hal from "./hal.jpeg";
 import { Button } from "antd";
 import ReactMarkdown from "react-markdown";
 
@@ -99,11 +100,18 @@ function ChatBubble({ messages, debugMode }) {
                 <TextBlock style={{ textAlign: "left" }} className="debug">
                   <DebuggerWrapper style={{ borderRadius: "10px" }}>
                     <h3>LLM Debugging 🤖</h3>
+                    {console.log(
+                      message.debug
+                        // replace newlines so it works for markdown
+                        .replace(/>/gm, "####")
+                        .replace(/\n/gm, "  &nbsp; &nbsp; \n  &nbsp; ")
+                    )}
                     <ReactMarkdown
                       children={message.debug
                         .replace(/>/gm, "####")
                         .replace(/^\s+/gm, "\n")
-                        .replace(/\. /gm, ".\n")}
+                        .replace(/\. /gm, ".\n")
+                        .replace(/\n/gm, "   \n")}
                     />
                   </DebuggerWrapper>
                 </TextBlock>
@@ -114,7 +122,7 @@ function ChatBubble({ messages, debugMode }) {
                   size="medium"
                   icon={
                     message.user === "bot" ? (
-                      <UserOutlined />
+                      <img src={hal} alt="hal" />
                     ) : (
                       <img src={alfred} alt="alfred" />
                     )
@@ -144,7 +152,13 @@ function ChatBubble({ messages, debugMode }) {
               {message.tableOutput && (
                 <TextBlock className="tableOutput">
                   <Table
-                    columns={columns}
+                    columns={Object.keys(message.tableOutput[0]).map((key) => {
+                      return {
+                        title: key,
+                        dataIndex: key,
+                        key: key,
+                      };
+                    })}
                     dataSource={message.tableOutput}
                     onChange={() => "apa"}
                   />
