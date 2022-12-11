@@ -132,9 +132,7 @@ const DebuggerBox = ({ header, content, input }) => {
             codeBlock
           />
         )}
-        {(header === "Zero Shot started" ||
-          header === "SQL finished" ||
-          header === "Zero Shot finished") && (
+        {header !== "SQL started" && (
           <ReactMarkdown
             style={{ textAlign: "left" }}
             children={content
@@ -236,12 +234,17 @@ function ChatBubble({ messages, debugMode }) {
                         item.split(/\r?\n/)[item.split(/\r?\n/).length - 2],
                         "item"
                       );
-                      const lines = item.split(/\r?\n/);
+                      const lines = item.replaceAll("*", "").split(/\r?\n/);
                       // remove empty lines
                       const filteredLines = lines.filter(
                         (line) => line.length > 0
                       );
-                      if (item.length > 20) {
+                      if (
+                        item.length > 20 &&
+                        !item
+                          .split(".")[0]
+                          .includes("Finished ReActMemoryAgent chain")
+                      ) {
                         return (
                           <DebuggerBox
                             key={index}

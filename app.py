@@ -77,6 +77,7 @@ def send_email():
 @app.route("/api", methods=["POST"])
 @cross_origin()
 def api():
+    print("ASDASD")
     data = request.get_json()
     print("data:", data)
     history = data["history"]
