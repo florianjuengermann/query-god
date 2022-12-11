@@ -122,9 +122,9 @@ const DebuggerBox = ({ header, content, input }) => {
     <DebuggerMegaWrapper>
       <h3>{header}</h3>
       <DebuggerBoxWrapper>
-        {header === "SQL started" && (
+        {(header === "SQL started" || header.includes("Finished LLMChain chain"))&& (
           <CopyBlock
-            language={"SQL"}
+            language={(header.includes("SQL") ? "SQL" : "python")}
             text={content.replaceAll("..", "")}
             showLineNumbers={false}
             theme={dracula}
@@ -132,7 +132,7 @@ const DebuggerBox = ({ header, content, input }) => {
             codeBlock
           />
         )}
-        {header !== "SQL started" && (
+        {header !== "SQL started"  && !header.includes("Finished LLMChain chain")&& (
           <ReactMarkdown
             style={{ textAlign: "left" }}
             children={content
