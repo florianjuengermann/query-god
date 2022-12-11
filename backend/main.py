@@ -92,7 +92,7 @@ def run(history, capture_output=True):
     ]
 
     db_connection_string = os.environ.get("DB_CONNECTION_STRING")
-    print("db_connection_string set:", db_connection_string is not None)
+    assert db_connection_string is not None, "DB_CONNECTION_STRING env var not set"
     db = SQLDatabase.from_uri(db_connection_string)
     print("Tables found:", db._all_tables)
 
@@ -107,6 +107,7 @@ def run(history, capture_output=True):
         llm=OpenAI(temperature=0),
         apis=apis,
         resources=resources,
+        debug=True,
     )
 
     # Load the tool configs that are needed.
@@ -187,19 +188,19 @@ def run(history, capture_output=True):
 def toy_test():
     history1 = [{
         "user": "user",
-        "text": "We had a bug yesterday. Are there any users that are stuck in training?"
+        "text": "We had a bug yesterday, can you tell me if there are any models stuck at training?"
     }]
     history2 = [
         {
             "user": "user",
-            "text": "We had a bug yesterday. Are there any users that are stuck in training?"
+            "text": "We had a bug yesterday, can you tell me if there are any models stuck at training?"
         },
         {
             "user": "bot",
-            "text": "Yes, there are 15 users stuck in training.",
+            "text": "There are 15 models that are stuck at training.",
             "debug": "\n\n> Entering new ReActMemoryAgent chain...\n...\n",
             "code": {
-                "code": " SELECT users.email, models.status FROM users INNER JOIN models ON users.id = models.user_id WHERE models.status = 'training';",
+                "code": " SELECT * FROM models WHERE status = 'training';",
                 "language": "sql",
                 "executable": False
             },
@@ -218,14 +219,14 @@ def toy_test():
                 "type": "json file",
                 "name": "query_result.json",
                 "outline": "15 rows",
-                "example": "[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]",
-                "source": "SELECT users.email, models.status FROM users INNER JOIN models ON users.id = models.user_id WHERE models.status = 'training';",
+                "example": "[{'id': UUID('53bc36f5-73ba-4ec2-9961-0f00b6e864f8'), 'user_id': UUID('205c5203-00f8-4cde-bed6-87f4000a6f05'), 'training_images': ['images/1e5e98747869.png', 'images/fe98d806957b.png', 'images/05b5c763a8e5.png', 'images/b0386223f9c4.png', 'images/d4d28ea9be25.png', 'images/7f7938ea0c38.png', 'images/b00ba5ab725b.png', 'images/50af53451304.png', 'images/a47b5f0a3b2f.png', 'images/9eea40e6b80d.png', 'images/a7adea3aaccb.png', 'images/6687ef2fa9e6.png', 'images/35f784a6fd8e.png', 'images/3247fb402fb9.png', 'images/d08be9be7f62.png', 'images/e9efebe12afa.png', 'images/027ac8cbe295.png'], 'created_at': datetime.datetime(2022, 12, 10, 13, 27, 39, 368527, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=0, name=None)), 'updated_at': datetime.datetime(2022, 12, 10, 13, 48, 10, 904000, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=0, name=None)), 'status': 'training', 'estimated_time_to_completion': datetime.datetime(2022, 12, 10, 13, 48, 9, 278000, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=0, name=None)), 'model_name': 'prod-finetune-lcngl', 'gender': 'Man', 'face_attributes': {'age': 32}}, ...]",
+                "source": " SELECT * FROM models WHERE status = 'training';",
                 "text": "15 rows returned:\n[{'email': '205c5203-00f8-4cde-bed6-87f4000a6f05@gmail.com', 'status': 'training'}, ...]\nAll results are stored in query_result.json",
             }
         },
         {
             "user": "user",
-            "text": "Great can you rekick their models?"
+            "text": "Great can you rekick these models?"
         }
     ]
 

@@ -14,7 +14,7 @@ def format_apis(apis: List[API]) -> str:
     """Format the apis into a string."""
     return "\n".join(
         [
-            f"{api.description}"
+            f"{api.type}: {api.signature}: {api.description}"
             for api in apis
             if api.description
         ]

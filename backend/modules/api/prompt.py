@@ -6,7 +6,7 @@ _DEFAULT_TEMPLATE = """Given an input question, first select the correct API end
 You have access to this API:
 {api_info}
 
-for the API use the keyword $URL$ and $TOKEN$ for the auth token.
+for the API use the enviroment variables URL and BEARER_TOKEN
 
 Use the following format:
 
